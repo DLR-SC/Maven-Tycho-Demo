@@ -49,7 +49,7 @@ This example intends to represent a realistic scenario for building an Eclipse b
 
 This project follows DLR Software Engineering Requirements for application class 1 as documented in the [Checklist](se_checklist_app_class_1.md).
  
-## Provided Features
+## Contribution
 
 This project is currently not open for contribution. In case you need or want to contribute, please contact us. 
 

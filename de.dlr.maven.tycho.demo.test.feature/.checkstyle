@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fileset-config file-format-version="1.2.0" simple-config="false" sync-formatter="false">
+  <local-check-config name="maven-checkstyle-plugin validate" location="file:/D:/Repositories/git/maven-tycho-test/checkStyle/checkStylesDefinition.xml" type="remote" description="maven-checkstyle-plugin configuration validate">
+    <property name="samedir" value="D:\Repositories\git\maven-tycho-test\de.dlr.maven.tycho.demo.test.feature/../checkStyle"/>
+    <property name="checkstyle.cache.file" value="${project_loc}/target/checkstyle-cachefile"/>
+    <property name="checkstyle.header.file" value="D:\Projekte\VirSat\Maven-Tycho-Test\.metadata\.plugins\org.eclipse.core.resources\.projects\de.dlr.maven.tycho.demo.test.feature\com.basistech.m2e.code.quality.checkstyleConfigurator\checkstyle-header-validate.txt"/>
+  </local-check-config>
+  <fileset name="java-sources-validate" enabled="true" check-config-name="maven-checkstyle-plugin validate" local="true">
+    <file-match-pattern match-pattern="^src/main/resources.*\.properties" include-pattern="true"/>
+    <file-match-pattern match-pattern="^src/test/resources.*\.properties" include-pattern="true"/>
+  </fileset>
+</fileset-config>

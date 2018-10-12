@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>de.dlr.maven.tycho.demo.docs.api</artifactId>
+	<name>DLR Maven Tycho Demo - API JavaDoc</name>
+	<parent>
+		<groupId>de.dlr.maven.tycho.demo</groupId>
+		<artifactId>de.dlr.maven.tycho.demo.parent</artifactId>
+		<version>0.1.0-SNAPSHOT</version>
+		<relativePath>../maven/pom.xml</relativePath>
+	</parent>
+	<packaging>eclipse-plugin</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-document-bundle-plugin</artifactId>
+				<version>${tycho-extras-version}</version>
+				<executions>
+					<execution>
+						<id>eclipse-javadoc</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.basedir}/help/api-docs/javadoc</outputDirectory>
+							<tocFile>${project.basedir}/help/api_docs.xml</tocFile>
+							<tocOptions>
+		 						<mainLabel>Maven Tycho Demo API JavaDoc</mainLabel>
+							</tocOptions>
+							<javadocOptions>
+								<additionalArguments>
+									<!-- Including the java doc just via -link seems to not find the package list  -->
+									<additionalArgument>
+										-linkoffline
+										 http://docs.oracle.com/javase/8/docs/api/
+										 http://docs.oracle.com/javase/8/docs/api/
+										-linkoffline 
+										 http://help.eclipse.org/oxygen/topic/org.eclipse.platform.doc.isv/reference/api/
+										 http://help.eclipse.org/oxygen/topic/org.eclipse.platform.doc.isv/reference/api/
+									</additionalArgument>
+									<additionalArgument>
+										-protected
+									</additionalArgument>
+								</additionalArguments>
+							</javadocOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

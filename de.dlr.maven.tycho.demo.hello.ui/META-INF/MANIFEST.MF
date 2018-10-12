@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DLR Maven Tycho Demo - Hello World UI
+Bundle-SymbolicName: de.dlr.maven.tycho.demo.hello.ui;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ de.dlr.maven.tycho.demo.hello,
+ de.dlr.maven.tycho.demo.external.lib.jfreechart
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.dlr.maven.tycho.demo.hello.ui.Activator
+Bundle-Vendor: DLR (German Aerospace Center)
+Automatic-Module-Name: de.dlr.maven.tycho.demo.hello.ui

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.dlr.maven.tycho.demo</groupId>
+	<artifactId>de.dlr.maven.tycho.demo.parent</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>DLR Maven Tycho Demo Parent POM</name>
+	<organization>
+		<name>DLR Simulation and Software Technology</name>
+		<url>www.dlr.de/sc</url>
+	</organization>
+
+	<properties>
+		<tycho-version>1.2.0</tycho-version>
+		<tycho-extras-version>1.2.0</tycho-extras-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<build.version>0.1.0</build.version>
+		<build.qualifier>'t'yyyyMMddHHmm</build.qualifier>
+		<build.folder.target>../builds</build.folder.target>
+		<build.folder.p2>p2</build.folder.p2>
+		<build.folder.bin>bin</build.folder.bin>
+		<build.folder.target.secured>../deploy/secured</build.folder.target.secured>
+		<build.folder.target.unsecured>../deploy/unsecured</build.folder.target.unsecured>
+		<build.folder.target.bin>../builds/${build.folder.bin}</build.folder.target.bin>
+		<build.folder.target.p2>../builds/${build.folder.p2}</build.folder.target.p2>
+		<build.folder.type>test</build.folder.type>
+		<build.file.zip>MavenTychoDemo.zip</build.file.zip>
+		<build.deploy.release>false</build.deploy.release>
+		<target.platform.name.default>mavenTychoDemo</target.platform.name.default>
+
+		<!-- Sonar Code Coverage -->
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.jacoco.version>0.7.7.201606060606</sonar.jacoco.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>deployUnsecured</id>
+			<properties>
+				<build.folder.target>${build.folder.target.unsecured}/</build.folder.target>
+				<build.folder.target.bin>${build.folder.target.unsecured}/${build.folder.bin}</build.folder.target.bin>
+				<build.folder.target.p2>${build.folder.target.unsecured}/${build.folder.p2}</build.folder.target.p2>
+			</properties>
+		</profile>
+		<profile>
+			<id>deployBackuped</id>
+			<properties>
+				<build.folder.target>${build.folder.target.secured}</build.folder.target>
+				<build.folder.target.bin>${build.folder.target.secured}/${build.folder.bin}</build.folder.target.bin>
+				<build.folder.target.p2>${build.folder.target.secured}/${build.folder.p2}</build.folder.target.p2>
+			</properties>
+		</profile>
+		<profile>
+			<id>development</id>
+			<properties>
+				<target.platform.name>${target.platform.name.default}</target.platform.name>
+				<build.folder.type>development</build.folder.type>
+				<build.qualifier>'d'yyyyMMddHHmm</build.qualifier>
+				<build.file>MavenTychoDemo_Development</build.file>
+			</properties>
+		</profile>
+		<profile>
+			<id>integration</id>
+			<activation>
+				<property>
+					<name>GIT_BRANCH</name>
+					<value>origin/integration</value>
+				</property>
+			</activation>
+			<properties>
+				<target.platform.name>${target.platform.name.default}</target.platform.name>
+				<build.folder.type>integration/${build.version}</build.folder.type>
+				<build.qualifier>'i'yyyyMMddHHmm</build.qualifier>
+				<build.file>MavenTychoDemo_Integration_${build.version}</build.file>
+			</properties>
+		</profile>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>GIT_BRANCH</name>
+					<value>origin/master</value>
+				</property>
+			</activation>
+			<properties>
+				<build.deploy.release>true</build.deploy.release>
+				<target.platform.name>${target.platform.name.default}</target.platform.name>
+				<build.folder.type>release/${build.version}/${BUILD_ID}</build.folder.type>
+				<build.qualifier>'r'yyyyMMddHHmm</build.qualifier>
+				<build.file>MavenTychoDemo_Release_${build.version}_${BUILD_ID}</build.file>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<showWarnings>true</showWarnings>
+					<useProjectSettings>false</useProjectSettings>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+					<target>
+						<artifact>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.groupId}.target</artifactId>
+							<version>${build.version}-SNAPSHOT</version>
+							<classifier>${target.platform.name}</classifier>
+						</artifact>
+					</target>
+				</configuration>
+			</plugin>
+
+			<!-- The surefire plugin enables the unit test runs -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+					<!-- <argLine>-ea -Xms256m -Xmx512m -javaagent:%USERPROFILE%\.m2\repository\org\jacoco\org.jacoco.agent\0.7.4.201502262128\org.jacoco.agent-0.7.4.201502262128-runtime.jar=destfile='${sonar.jacoco.reportPath}',append=true</argLine> -->
+					<useUIHarness>false</useUIHarness>
+				</configuration>
+			</plugin>
+
+			<!-- Enabling use of jacoco -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${sonar.jacoco.version}</version>
+				<configuration>
+					<append>true</append>
+					<!-- Where to put jacoco coverage report -->
+					<destFile>${sonar.jacoco.reportPath}</destFile>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<format>${build.qualifier}</format>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>8.8</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<configuration>
+							<configLocation>../checkStyle/checkStylesDefinition.xml</configLocation>
+							<propertyExpansion>samedir=${project.basedir}/../checkStyle</propertyExpansion>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<linkXRef>false</linkXRef>
+							<!-- violationSeverity>warning</violationSeverity -->
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.eclipse.tycho.extras</groupId>
+										<artifactId>tycho-document-bundle-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>javadoc</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-checkstyle-plugin</artifactId>
+										<versionRange>[2.6,)</versionRange>
+										<goals>
+											<goal>check</goal>
+											<goal>checkstyle</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+									<comment>source:
+										extension(com.basistech.m2e.code.quality.checkstyle_1.0.0.201705301746)</comment>
+								</pluginExecution>
+							</pluginExecutions>
+
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

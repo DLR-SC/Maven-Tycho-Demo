@@ -1,0 +1,6 @@
+/builds/
+**/target/
+**/*._trace
+**/*.xtendbin
+/workspace/
+/deploy/

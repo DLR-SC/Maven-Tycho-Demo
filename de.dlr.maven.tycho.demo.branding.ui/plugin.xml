@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.intro">
+      <intro
+            class="de.dlr.maven.tycho.demo.branding.ui.intro.IntroPart"
+            id="de.dlr.maven.tycho.demo.branding.ui.intro">
+      </intro>
+      <introProductBinding
+            introId="de.dlr.maven.tycho.demo.branding.ui.intro"
+            productId="de.dlr.maven.tycho.demo.branding.ui.dlrMavenTychoDemo">
+      </introProductBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.dlr.maven.tycho.demo.branding.ui.perspective.DefaultPerspective"
+            icon="resources/Branding/MavenTychoDemoIcon16.png"
+            id="de.dlr.maven.tycho.demo.branding.ui.default.perspective"
+            name="DLR Maven Tycho Demo">
+      </perspective>
+   </extension>
+   <extension
+         id="dlrMavenTychoDemo"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="DLR Maven Tycho Demo Application">
+         <property
+               name="windowImages"
+               value="resources/Branding/MavenTychoDemoIcon_016.png,resources/Branding/MavenTychoDemoIcon_032.png,resources/Branding/MavenTychoDemoIcon_048.png,resources/Branding/MavenTychoDemoIcon_064.png,resources/Branding/MavenTychoDemoIcon_128.png,resources/Branding/MavenTychoDemoIcon_256.png">
+         </property>
+         <property
+               name="aboutText"
+               value="DLR Maven Tycho Demo&#x0D;&#x0A;&#x0D;&#x0A;Version 0.1.0&#x0D;&#x0A;&#x0D;&#x0A;Copyright 2018 by German Aerospace Center (DLR) e.V.&#x0D;&#x0A;&#x0D;&#x0A;www.software.dlr.de&#x0D;&#x0A;&#x0D;&#x0A;German Aerospace Center (DLR) e.V.&#x0D;&#x0A;Lilienthalplatz 7&#x0D;&#x0A;38108 Braunschweig&#x0D;&#x0A;Germany">
+         </property>
+         <property
+               name="aboutImage"
+               value="resources/Branding/MavenTychoDemoAbout.png">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="808080">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,280,450,15">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,260,440,20">
+         </property>
+         <property
+               name="appName"
+               value="DLR Maven Tycho Demo Application">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+      </product>
+   </extension>
+</plugin>

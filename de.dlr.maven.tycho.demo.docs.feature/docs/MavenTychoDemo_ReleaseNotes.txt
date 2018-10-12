@@ -1,0 +1,23 @@
+Maven Tycho Demo Release Notes
+------------------------------
+
+Release 0.1.0 (07 September 2018)
+
+New Features:
+	Maven Tycho Build Process for Eclipse RCP Applications
+	Examples for Build with maven and eclipse
+	Examples for Development, Integration and Release builds
+	Examples for Features, Plugins, Products, Update Sites
+	Examples for License Feature
+	Examples for Branding Feature
+	Examples for Documents Feature with Release Notes and API Doc
+	Examples for External Library Dependencies
+	Examples for Test Fragments	
+	
+	
+Usability Updates:
+	...
+
+Fixed Bugs:
+	...
+	

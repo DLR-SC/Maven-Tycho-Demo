@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="de.dlr.maven.tycho.demo.hello.ui.category"
+            name="Maven Tycho Demo">
+      </category>
+      <view
+            category="de.dlr.maven.tycho.demo.hello.ui.category"
+            class="de.dlr.maven.tycho.demo.hello.ui.view.MavenTychoDemoViewPart"
+            icon="resources/icons/MavenTychoDemoIcon16.png"
+            id="de.dlr.maven.tycho.demo.hello.ui.view"
+            name="Maven Tycho Demo View"
+            restorable="true">
+      </view>
+   </extension>
+
+</plugin>

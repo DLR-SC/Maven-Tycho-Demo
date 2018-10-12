@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="help/api_docs.xml"
+            primary="true">
+      </toc>
+   </extension>
+   <extension
+         point="org.eclipse.pde.core.javadoc">
+      <javadoc
+            archive="false"
+            path="help/api-docs/javadoc">
+		<plugin id="de.dlr.maven.tycho.demo.branding.ui"></plugin>
+		<plugin id="de.dlr.maven.tycho.demo.hello"></plugin>
+		<plugin id="de.dlr.maven.tycho.demo.hello.ui"></plugin>
+      </javadoc>
+   </extension>
+</plugin>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?NLS TYPE="org.eclipse.help.toc"?><toc label="Maven Tycho Demo API JavaDoc">
+<topic href="help/api-docs/javadoc/overview-summary.html" label="Maven Tycho Demo API JavaDoc">
+<topic label="Packages">
+<topic href="help/api-docs/javadoc/de/dlr/maven/tycho/demo/external/lib/jfreechart/package-summary.html" label="de.dlr.maven.tycho.demo.external.lib.jfreechart"/>
+<topic href="help/api-docs/javadoc/de/dlr/maven/tycho/demo/hello/package-summary.html" label="de.dlr.maven.tycho.demo.hello"/>
+<topic href="help/api-docs/javadoc/de/dlr/maven/tycho/demo/hello/say/package-summary.html" label="de.dlr.maven.tycho.demo.hello.say"/>
+</topic>
+<topic href="help/api-docs/javadoc/constant-values.html" label="Constant Values"/>
+<topic href="help/api-docs/javadoc/deprecated-list.html" label="Deprecated List"/>
+</topic>
+</toc>

@@ -1,0 +1,183 @@
+<project name="DLR Maven Tycho Demo" default="updateVersions" basedir=".">
+	<description>
+  	  Additional Build Preparations e.g. Updating Version Numbers
+  	</description>
+
+	<property name="version">0.1.0</property>
+	<property name="group.id">de.dlr.maven.tycho.demo</property>
+	<property name="version.pattern.qualified">[\s]?[0-9]+\.[0-9]+\.[0-9]+\.qualifier</property>
+	<property name="version.pattern">[\s]?[0-9]+\.[0-9]+\.[0-9]+</property>
+	<property name="m2.directory">${user.home}/.m2/</property>
+	<property environment="env"/>
+
+	<!-- =====================================================
+		 Task: flushAll
+	     ===================================================== -->
+	<target name="flushAll">
+		<description>Call this target to flush all relevant information before starting the build</description>
+		<antcall target="flushBuilds">
+		</antcall>
+		<antcall target="flushM2Repository">
+		</antcall>
+	</target>
+
+	<!-- =====================================================
+		 Task: flushM2Repository 
+	     ===================================================== -->
+	<target name="flushM2Repository">
+		<description>Call this target to flush pending virsat dependencies in mavens m2 repository</description>
+		<delete includeemptydirs="true" verbose="true" failonerror="false">
+			<fileset dir="${m2.directory}" includes="**/${group.id}*/**"/>
+		</delete>
+	</target>
+
+	<!-- =====================================================
+		 Task: flushBuilds
+	     ===================================================== -->
+	<target name="flushBuilds">
+		<description>Call this target to flush builds folder for deployment</description>
+		<delete includeemptydirs="true" verbose="true" failonerror="false">
+			<fileset dir="../builds" includes="**/*"/>
+		</delete>
+	</target>
+
+	<!-- =====================================================
+		 Task: updateVersion 
+	     ===================================================== -->
+	<target name="updateVersions">
+
+		<!-- =====================================================
+		     Task: updateVersion - Ask for new Version String
+		     ===================================================== -->
+		<input message="Please enter the new Version Number (e.g.: 4.0.3):" 
+			addproperty="version.new" 
+			defaultvalue="${version}" />
+		<property name="version.new.qualified">${version.new}.qualifier</property>
+
+		<!-- =====================================================
+		     Task: updateVersion - Self Update build.xml
+		     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="&lt;property name=&quot;version&quot;&gt;${version.pattern}&lt;/property&gt;" />
+			<substitution expression="&lt;property name=&quot;version&quot;&gt;${version.new}&lt;/property&gt;" />
+			<fileset dir=".">
+				<exclude name="target/"/>
+				<include name="build.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- =====================================================
+		     Task: updateVersion - Update Build Version in POM for deployment
+		     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="&lt;build.version&gt;${version.pattern}-SNAPSHOT&lt;/build.version&gt;" />
+			<substitution expression="&lt;build.version&gt;${version.new}-SNAPSHOT&lt;/build.version&gt;" />
+			<fileset dir=".">
+				<exclude name="**/target/"/>
+				<include name="**/pom.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<replaceregexp byline="true">
+			<regexp pattern="&lt;version&gt;${version.pattern}-SNAPSHOT&lt;/version&gt;" />
+			<substitution expression="&lt;version&gt;${version.new}-SNAPSHOT&lt;/version&gt;" />
+			<fileset dir=".">
+				<exclude name="**/target/" />
+				<include name="**/pom.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- =====================================================
+		     Task: updateVersion - Update Build Version in POM for deployment
+		     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="&lt;version&gt;${version.pattern}-SNAPSHOT&lt;/version&gt;" />
+			<substitution expression="&lt;version&gt;${version.new}-SNAPSHOT&lt;/version&gt;" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/pom.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- =====================================================
+		     Task: updateVersion - Update all MANIFEST.MF
+		     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="Bundle-Version:${version.pattern.qualified}" />
+			<substitution expression="Bundle-Version: ${version.new.qualified}" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/META-INF/MANIFEST.MF" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- =====================================================
+		     Task: updateVersion - Update all feature.xml
+		     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="version=&quot;${version.pattern.qualified}&quot;" />
+			<substitution expression="version=&quot;${version.new.qualified}&quot;" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/feature.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- =====================================================
+	     Task: updateVersion - Update Category p2 Versions
+	     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="version=&quot;${version.pattern.qualified}&quot;" />
+			<substitution expression="version=&quot;${version.new.qualified}&quot;" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/category.xml" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp byline="true">
+			<regexp pattern="${version.pattern.qualified}\.jar" />
+			<substitution expression="${version.new.qualified}.jar" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/category.xml" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp byline="true">
+			<regexp pattern="&lt;updatesite.release.version&gt;${version.pattern}&lt;/updatesite.release.version&gt;" />
+			<substitution expression="&lt;updatesite.release.version&gt;${version.new}&lt;/updatesite.release.version&gt;" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/updateSitePom/pom.xml" />
+			</fileset>
+		</replaceregexp>
+
+		<!-- =====================================================
+		     Task: updateVersion - Update Product Version
+		     ===================================================== -->
+		<replaceregexp byline="true">
+			<regexp pattern="version=&quot;${version.pattern.qualified}&quot;" />
+			<substitution expression="version=&quot;${version.new.qualified}&quot;" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/*.product" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp byline="true">
+			<regexp pattern="Version${version.pattern}" />
+			<substitution expression="Version ${version.new}" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/*.product" />
+			</fileset>
+		</replaceregexp>
+		<replaceregexp byline="true">
+			<regexp pattern="Version${version.pattern}" />
+			<substitution expression="Version ${version.new}" />
+			<fileset dir=".">
+				<exclude name="${group.id}.**/target/"/>
+				<include name="${group.id}.**/**/plugin.xml" />
+			</fileset>
+		</replaceregexp>
+
+	</target>
+</project>

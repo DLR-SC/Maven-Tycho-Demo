@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>de.dlr.maven.tycho.demo</artifactId>
+	<name>DLR Maven Tycho Demo</name>
+	<packaging>pom</packaging>
+	
+	<modules>
+		<module>de.dlr.maven.tycho.demo.branding.feature</module>
+		<module>de.dlr.maven.tycho.demo.branding.ui</module>
+		<module>de.dlr.maven.tycho.demo.license.feature</module>
+		<module>de.dlr.maven.tycho.demo.target</module>
+		<module>de.dlr.maven.tycho.demo.hello</module>
+		<module>de.dlr.maven.tycho.demo.hello.feature</module>
+		<module>de.dlr.maven.tycho.demo.hello.test</module>
+		<module>de.dlr.maven.tycho.demo.hello.ui</module>
+		<module>de.dlr.maven.tycho.demo.test</module>
+		<module>de.dlr.maven.tycho.demo.test.feature</module>
+		<module>de.dlr.maven.tycho.demo.p2updatesite</module>
+		<module>de.dlr.maven.tycho.demo.product</module>
+		<module>de.dlr.maven.tycho.demo.docs.feature</module>
+		<module>de.dlr.maven.tycho.demo.docs.api</module>
+		<module>de.dlr.maven.tycho.demo.external.lib.jfreechart</module>
+	</modules>
+	<groupId>de.dlr.maven.tycho.demo</groupId>
+	<version>0.1.0-SNAPSHOT</version>
+</project>

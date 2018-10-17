@@ -16,6 +16,7 @@
 	<properties>
 		<build.folder.application>DLRMavenTychoDemo</build.folder.application>
 		<build.folder.fullpath>${build.folder.target.p2}/${build.folder.application}/${build.folder.type}</build.folder.fullpath>
+		<build.file.win32.fullpath>${build.folder.target.p2}/${build.folder.application}/${build.folder.type}/zip/${build.file}_p2.zip</build.file.win32.fullpath>
 	</properties>
 
 	<build>
@@ -39,10 +40,12 @@
 									</condition>
 								</fail>
 								<delete dir="${build.folder.fullpath}" />
-								<copy todir="${build.folder.fullpath}">
-									<fileset dir="./target/Repository">
+								<copy todir="${build.folder.fullpath}/plain">
+									<fileset dir="./target/repository">
 									</fileset>
 								</copy>
+								<zip destfile="${build.file.win32.fullpath}"
+									basedir="./target/repository" />
 							</target>
 							<!-- ANT Script Stop -->
 						</configuration>

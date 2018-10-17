@@ -11,4 +11,4 @@
 		<relativePath>../maven/pom.xml</relativePath>
 	</parent>
 	<packaging>eclipse-plugin</packaging>
-</project>
+</project> 

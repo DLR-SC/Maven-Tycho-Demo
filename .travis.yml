@@ -23,6 +23,7 @@ env:
   # API Token for access to github
   # ---------------------------------------------
   - secure: SNRF9Ys0OTI6zoFn88N8gxsadU7Ifu+G7B5kJfBmtRnVXoubUmpbve+sBgmk9OuHcpcmUnxvs2sOopjBOQBjmFMF7pZ699e4z6KLyhZTJG4wqiYkeTAt5uUixSaZ3BE0C07qC3rA/u4OD1GlBEEDGhUvDzddbgmUotvoUUi3+BCwyUBTAw64oR4z5wJADWX6eGqvLZ4oEnpz95A3OuNxepStIVDPZE7eACl8nwqztKBRkS3xmV6kKCB2Hzclq4Bk0DPyLDPvomnTaswhssT/NxuV8c6VUH72cjPJWLnMCupkV2Gye7v7XomdfDWTZJv+mZfoWY8eZMn/+zWwbwvKVi2DuTMbjWfwNPyFYI12ZfIRW613S2TITYoLOedo6V4Sh2B8pMJZeeSosAmje9pOdQYTysRz9imTraWd7zEYsQEcUCwCvJEtLHDFOJhXZT4OZ3hOyEv2FSI831/UJRlXRxwQJCOsPXO7sLNy3qY3vHE8P7IJjy8F3Mzx7IzX21B1exquE+PnI2FW3AEMUjnySCm28QOMXHrsb5Qi4CoNz3RaRevQsjo6wVNr/Idgh0CEMvDLzbtilFfcwnfl3Fa2phcN+TT3e+u6UNTuZNHhpXl/+gfnq61VhlZNEE6q2U6g6Bk+YLhjCFEfY4fIcEd/LIWSJcJ0i9SOJ0VJL5VKw+I=
+  - secure: d/YxMML2cH15z8GitGbwqvjBW0MBI2Ye184yEDQwx0nCGBnaOURXBGKk3n4BYFGi1CH6P21ResOiyFc0RCp/TSRSy2mP8BLafWN8bxqLsje6xt5U+x6gXOMFP2BhwC6df5NRxSaxQAgKBmQLHEJEf0LfMMyhxOdcGhti1e/ZwCl3LZwUuJeAX/Cd4pI1paQUqqQTVg2BgYtbqVEkSanuyH9DC5/04bJ8d0eYpfQ2jNa73xYXKiXMZgcrfe1FlPUxp1kyKx/bQfCy+C/LaOL5eIfit11YYxId3ObheQf7asiKGEFP74OICJcdX5rDgFIOqoKddJbrA1e/nAWIKeDXSwu2zSZGwX0Xgnz+0T5fngGaQTLueGRGFOaSmi1ofKfGpluPvUdaTLFvpOwNWIwpuw1SndCzKeLYlq86QulI/r+DqRy3ijoEDAivUocBj0lOZSUB84AYYyYocWjJDBkHwPCOR9tHVpI25kXZyyLWq5fFd3xgLw2DgkLiyUeMIumAkBqAiP/p1FHcBmXNFbzls4UGY8DyaXeI5IPNr5BMknjvvBWjrG23w74qIq9Hp8Veurwvdi5w5h1ar592PvFu8bXqM7OfxNOznXdB2gnWJxmp5O3Tygo4cFrel4neDIZ7ATUK2iEZfymKHI/g03hVfiN2CD6W7A0OmEsqbtSfwsM=
 
 jobs:
   include:
@@ -37,6 +38,17 @@ jobs:
       name: Clean Install Feature Build
       script:
       - mvn clean install -P development,deployUnsecured -B -V
+      deploy:
+        # -----------------------------------------------------------
+        # Now attach the release to the newly created tag.
+        # release is attached to the tag on the current commit.
+        # -----------------------------------------------------------
+        provider: bintray
+        file: bintray_development.json
+        user: PhilMFischer
+        key: ${BINTRAY_API_TOKEN}
+        passphrase: "Optional. In case a passphrase is configured on Bintray and GPG signing is used"
+        skip_cleanup: true # to upload artifacts created during the build
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.

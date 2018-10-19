@@ -45,7 +45,7 @@ jobs:
         # -----------------------------------------------------------
         provider: bintray
         file: bintray_development.json
-        user: PhilMFischer
+        user: philmfischer
         key: ${BINTRAY_API_TOKEN}
         passphrase: "Optional. In case a passphrase is configured on Bintray and GPG signing is used"
         skip_cleanup: true # to upload artifacts created during the build

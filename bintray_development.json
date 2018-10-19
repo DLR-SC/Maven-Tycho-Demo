@@ -2,7 +2,7 @@
     "package": {
         "name": "Deploy",
         "repo": "Maven-Tycho-Demo",
-        "subject": "PhilMFischer",
+        "subject": "philmfischer",
         "desc": "Continuous Integration artifacts of Maven-Tycho-Demo",
         "website_url": "",
         "issue_tracker_url": "https://github.com/DLR-SC/Maven-Tycho-Demo/issues",

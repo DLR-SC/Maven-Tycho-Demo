@@ -15,7 +15,7 @@
     },
 
     "version": {
-        "name": "development",
+        "name": "development-snapshot",
         "desc": "Artifacts of development builds - These artifacts may be continuously overwritten",
         "gpgSign": false
     },
@@ -23,9 +23,9 @@
     "files":
         [
           {
-            "includePattern": "deploy/unsecured/(.*)",
+            "includePattern": "deploy/unsecured/(.*)/plain/(.*\..*)",
             "excludePattern": "(.*/bin/.*|.*/zip/.*)",
-            "uploadPattern": "/builds/$1",
+            "uploadPattern": "builds/$1/plain/$2",
              "matrixParams": {
                "override": 1
              }

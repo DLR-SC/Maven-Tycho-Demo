@@ -21,14 +21,12 @@
     },
 
     "files":
-        [{
-           "includePattern": "deploy/unsecured(.*)",
-           "excludePattern": "(.*/bin/.*|.*/plain/.*)",
-           "uploadPattern": "$1",
-           "matrixParams": {
-              "override": 1
-           }
-         },
+        [
+          {
+            "includePattern": "deploy/unsecured(.*)",
+            "excludePattern": "(.*/bin/.*|.*/plain/.*)",
+            "uploadPattern": "$1",
+          }
         ],
     "publish": true
 }

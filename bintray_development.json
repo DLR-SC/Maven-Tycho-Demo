@@ -26,23 +26,23 @@
             "includePattern": "deploy/unsecured/(.*)/plain/binary/(.*\..*)",
             "excludePattern": "(.*/bin/.*|.*/zip/.*)",
             "uploadPattern": "$1/plain/binary/$2",
-             "matrixParams": {
-               "override": 1
-             }
+            "matrixParams": {
+              "override": 1
+            }
           }, {
             "includePattern": "deploy/unsecured/(.*)/plain/features/(.*\..*)",
             "excludePattern": "(.*/bin/.*|.*/zip/.*)",
             "uploadPattern": "$1/plain/features/$2",
-             "matrixParams": {
-               "override": 1
-             }
+            "matrixParams": {
+              "override": 1
+            }
           }, {
             "includePattern": "deploy/unsecured/(.*)/plain/plugins/(.*\..*)",
             "excludePattern": "(.*/bin/.*|.*/zip/.*)",
             "uploadPattern": "$1/plain/plugins/$2",
-             "matrixParams": {
-               "override": 1
-             }
+            "matrixParams": {
+              "override": 1
+            }
           }, {
             "includePattern": "deploy/unsecured/(.*)/plain/artifacts.jar",
             "excludePattern": "(.*/bin/.*|.*/zip/.*)",
@@ -50,6 +50,7 @@
              "matrixParams": {
                "override": 1
              }
+          }
         ],
     "publish": true
 }

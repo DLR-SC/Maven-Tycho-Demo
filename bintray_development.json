@@ -24,7 +24,6 @@
         [
           {
             "includePattern": "deploy/unsecured/(.*)",
-            "excludePattern": "(.*/bin/.*|.*/zip/.*)",
             "uploadPattern": "builds/$1",
              "matrixParams": {
                "override": 1

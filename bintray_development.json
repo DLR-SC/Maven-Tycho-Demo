@@ -25,7 +25,7 @@
           {
             "includePattern": "deploy/unsecured(.*)",
             "excludePattern": "(.*/bin/.*|.*/plain/.*)",
-            "uploadPattern": "$1",
+            "uploadPattern": "$1"
           }
         ],
     "publish": true

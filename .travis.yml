@@ -49,6 +49,8 @@ jobs:
         key: ${BINTRAY_API_TOKEN}
         passphrase: "Optional. In case a passphrase is configured on Bintray and GPG signing is used"
         skip_cleanup: true # to upload artifacts created during the build
+        on:
+           all_branches: true
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.

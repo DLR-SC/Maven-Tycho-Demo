@@ -15,8 +15,8 @@
     },
 
     "version": {
-        "name": "development",
-        "desc": "Artifacts of development builds - These artifacts may be continuously overwritten",
+        "name": "integration",
+        "desc": "Artifacts of integration builds - These artifacts may be continuously overwritten",
         "gpgSign": false
     },
 

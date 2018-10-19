@@ -11,7 +11,7 @@
         "licenses": ["EPL-1.0"],
         "labels": ["Eclipse", "RCP", "Maven", "Tycho"],
         "public_download_numbers": false,
-        "public_stats": false,
+        "public_stats": false
     },
 
     "version": {

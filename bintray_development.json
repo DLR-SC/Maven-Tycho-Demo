@@ -23,7 +23,7 @@
     "files":
         [
           {
-            "includePattern": "deploy/unsecured(.*)",
+            "includePattern": "deploy/unsecured/(.*)",
             "excludePattern": "(.*/bin/.*|.*/zip/.*)",
             "uploadPattern": "$1",
              "matrixParams": {

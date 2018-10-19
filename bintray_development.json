@@ -24,8 +24,11 @@
         [
           {
             "includePattern": "deploy/unsecured(.*)",
-            "excludePattern": "(.*/bin/.*|.*/plain/.*)",
-            "uploadPattern": "$1"
+            "excludePattern": "(.*/bin/.*|.*/zip/.*)",
+            "uploadPattern": "$1",
+             "matrixParams": {
+               "override": 1
+             }
           }
         ],
     "publish": true

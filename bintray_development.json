@@ -1,6 +1,6 @@
 {
     "package": {
-        "name": "Deploy",
+        "name": "development-builds",
         "repo": "Maven-Tycho-Demo",
         "subject": "philmfischer",
         "desc": "Continuous Integration artifacts of Maven-Tycho-Demo",

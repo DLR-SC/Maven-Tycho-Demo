@@ -40,14 +40,12 @@ jobs:
       - mvn clean install -P development,deployUnsecured -B -V
       deploy:
         # -----------------------------------------------------------
-        # Now attach the release to the newly created tag.
-        # release is attached to the tag on the current commit.
+        # Now attach the build to the bintray repository
         # -----------------------------------------------------------
         provider: bintray
         file: bintray_development.json
         user: philmfischer
         key: ${BINTRAY_API_TOKEN}
-        passphrase: "Optional. In case a passphrase is configured on Bintray and GPG signing is used"
         skip_cleanup: true # to upload artifacts created during the build
         on:
            all_branches: true
@@ -76,7 +74,7 @@ jobs:
         # Now attach the release to the newly created tag.
         # release is attached to the tag on the current commit.
         # -----------------------------------------------------------
-        provider: releases
+      - provider: releases
         api_key: $GITHUB_API_TOKEN
         file_glob: true
         file:
@@ -92,6 +90,16 @@ jobs:
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: development
+        # -----------------------------------------------------------
+        # Now attach the build to the bintray repository
+        # -----------------------------------------------------------
+      - provider: bintray
+        file: bintray_development.json
+        user: philmfischer
+        key: ${BINTRAY_API_TOKEN}
+        skip_cleanup: true
+        on:
+           branch: development
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Integration.
     #------------------------------------------------------------
@@ -116,7 +124,7 @@ jobs:
         # Now attach the release to the newly created tag.
         # release is attached to the tag on the current commit.
         # -----------------------------------------------------------
-        provider: releases
+      - provider: releases
         api_key: $GITHUB_API_TOKEN
         file_glob: true
         file: 
@@ -132,6 +140,16 @@ jobs:
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: integration
+        # -----------------------------------------------------------
+        # Now attach the build to the bintray repository
+        # -----------------------------------------------------------
+      - provider: bintray
+        file: bintray_integration.json
+        user: philmfischer
+        key: ${BINTRAY_API_TOKEN}
+        skip_cleanup: true
+        on:
+           branch: integration
     # -----------------------------------------------------------
     # Deploy Jobs for secured Releases.
     #------------------------------------------------------------

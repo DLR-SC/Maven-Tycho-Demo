@@ -26,7 +26,7 @@
            "excludePattern": "(.*/bin/.*|.*/plain/.*)",
            "uploadPattern": "$1",
            "matrixParams": {
-              "override": 1 }
+              "override": 1
            }
          },
         ],

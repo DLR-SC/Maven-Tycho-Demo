@@ -87,7 +87,7 @@ echo ""
 # parameters: the file to be uploaded
 # -------------------------------------------
 function bintrayApiPutFile {
- 	CURL_RESULT=$(curl -XPUT -T $1 -u${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${TARGET_PATH}/$1;bt_package=${DEPLOY_PACKAGE_NAME};bt_version=${DEPLOY_PACKAGE_VERSION};publish=0;override=${BINTRAY_OVERRIDE}")
+  CURL_RESULT=$(curl -XPUT -T $1 -u${BINTRAY_USER}:${BINTRAY_API_KEY} "${BINTRAY_API}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${TARGET_PATH}/$1;bt_package=${DEPLOY_PACKAGE_NAME};bt_version=${DEPLOY_PACKAGE_VERSION};publish=0;override=${BINTRAY_OVERRIDE}")
   if [[ $CURL_RESULT != *"success"* ]]; then
     echo "ERROR: Failed upload due to: $CURL_RESULT"
     exit 1
@@ -100,7 +100,7 @@ function bintrayApiPutFile {
 # parameters: none
 # -------------------------------------------
 function bintrayApiPushPublish {
-	curl -X POST -u ${BINTRAY_USER}:${BINTRAY_API_KEY} ${BINTRAY_API}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${DEPLOY_PACKAGE_NAME}/${DEPLOY_PACKAGE_VERSION}/publish -d "{ \"discard\": \"false\" }"
+  curl -X POST -u ${BINTRAY_USER}:${BINTRAY_API_KEY} ${BINTRAY_API}/content/${BINTRAY_OWNER}/${BINTRAY_REPO}/${DEPLOY_PACKAGE_NAME}/${DEPLOY_PACKAGE_VERSION}/publish -d "{\"discard\":\"false\"}"
 }
 
 # -------------------------------------------------

@@ -69,6 +69,17 @@ TARGET_PATH="$DEPLOY_PACKAGE_NAME/$DEPLOY_PACKAGE_VERSION"
 
 echo "all parameters parsed and set up for deployment"
 echo ""
+echo "Summary of parameters follows..."
+echo "User:         ${BINTRAY_USER}"
+echo "Token:        xxxx"
+echo "Owner:        ${BINTRAY_OWNER}"
+echo "Repo:         ${BINTRAY_REPO}"
+echo "Package:      ${DEPLOY_PACKAGE_NAME}"
+echo "Version:      ${DEPLOY_PACKAGE_VERSION}"
+echo "Path P2:      ${PATH_P2_REPOSITORY}"
+echo "Path Bintray: ${TARGET_PATH}"
+echo "Override:     ${BINTRAY_OVERRIDE}"
+echo ""
 
 # -------------------------------------------
 # Function for Bintray API Call to upload a
@@ -117,17 +128,6 @@ function bintrayDeployFiles {
 function deployP2UpdateSite {
   echo "OK, starting the deployment"
   echo "---------------------------"
-  echo ""
-  echo "Summary of parameters follows..."
-  echo "User:         ${BINTRAY_USER}"
-  echo "Token:        xxxx"
-  echo "Owner:        ${BINTRAY_OWNER}"
-  echo "Repo:         ${BINTRAY_REPO}"
-  echo "Package:      ${DEPLOY_PACKAGE_NAME}"
-  echo "Version:      ${DEPLOY_PACKAGE_VERSION}"
-  echo "Path P2:      ${PATH_P2_REPOSITORY}"
-  echo "Path Bintray: ${TARGET_PATH}"
-  echo "Override:     ${BINTRAY_OVERRIDE}"
   echo ""
   echo "Switching directories into p2 repository"
   

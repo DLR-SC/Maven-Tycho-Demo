@@ -85,7 +85,7 @@ jobs:
         script: # rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/<dir> <ssh-user>@<deploy-host>:path/to/files
         - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/TravisTest/
         on:
-          branch: development
+          repo: DLR-SC/Maven-Tycho-Demo
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.

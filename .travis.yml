@@ -7,6 +7,8 @@ cache:
   directories:
   - $HOME/.m2
 
+before_install:
+
 install:
 - true
 
@@ -37,6 +39,55 @@ jobs:
       name: Clean Install Feature Build
       script:
       - mvn clean install -P development,deployUnsecured -B -V
+      before_deploy:
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out id_ed25519 -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/id_ed25519
+        - ssh-add /tmp/id_ed25519
+        # -----------------------------------------------------------
+        # Update the development tag beforehand
+        # And send it back to the origin, otherwise travis will 
+        # apparently perform a git fetch before, and overwrite the
+        # moved tag back to the previous state.
+        #------------------------------------------------------------
+        - git tag -f development_snapshot
+        - git remote add github-mtd  https://${GITHUB_API_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+        - git push -f github-mtd development_snapshot
+        - git remote remove github-mtd
+      deploy:
+        # -----------------------------------------------------------
+        # Now attach the release to the newly created tag.
+        # release is attached to the tag on the current commit.
+        # -----------------------------------------------------------
+      - provider: releases
+        api_key: $GITHUB_API_TOKEN
+        file_glob: true
+        file:
+        - deploy/unsecured/p2/**/zip/*_p2.zip
+        - deploy/unsecured/bin/**/*.zip
+        - deploy/unsecured/bin/**/*.tar.gz
+        skip_cleanup: true
+        name: Maven Tycho Demo Development Build
+        body: Development build on latest commit by Travis CI - $TRAVIS_BRANCH ($TRAVIS_COMMIT) - $(date +'%F %T %Z'). This release is subject to constant change.
+        prerelease: true
+        overwrite: true
+        target_commitish: $TRAVIS_COMMIT
+        on:
+          repo: DLR-SC/Maven-Tycho-Demo
+          branch: development
+      # ---------------------------------------------
+      # push build to sourceforge repo for deployment
+      # ---------------------------------------------    
+      - provider: script
+        skip_cleanup: true
+        script: # rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/<dir> <ssh-user>@<deploy-host>:path/to/files
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/TravisTest/
+        on:
+          branch: development
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.
@@ -46,6 +97,15 @@ jobs:
       name: Clean Install Deploy Development
       script:
       - mvn clean install -P development,deployUnsecured -B -V
+      before_deploy:
+      # ----------------------------------------
+      # Decrypt the key for accessign the 
+      # deployment store and add it to ssh-agent
+      # ----------------------------------------
+      - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out id_ed25519 -d
+      - eval "$(ssh-agent -s)"
+      - chmod 600 /tmp/id_ed25519
+      - ssh-add /tmp/id_ed25519
       before_deploy:
         # -----------------------------------------------------------
         # Update the development tag beforehand

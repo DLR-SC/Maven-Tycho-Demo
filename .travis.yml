@@ -7,6 +7,9 @@ cache:
   directories:
   - $HOME/.m2
 
+addons:
+  ssh_known_hosts: frs.sourceforge.net
+
 install:
 - true
 

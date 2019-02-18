@@ -42,7 +42,7 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
         - eval "$(ssh-agent -s)"
         - chmod 600 /tmp/id_ed25519
         - ssh-add /tmp/id_ed25519

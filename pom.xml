@@ -23,6 +23,7 @@
 		<module>de.dlr.maven.tycho.demo.docs.feature</module>
 		<module>de.dlr.maven.tycho.demo.docs.api</module>
 		<module>de.dlr.maven.tycho.demo.external.lib.jfreechart</module>
+		<module>de.dlr.maven.tycho.demo.swtbot.test</module>
 	</modules>
 	<groupId>de.dlr.maven.tycho.demo</groupId>
 	<version>0.2.0-SNAPSHOT</version>

@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.dlr.maven.tycho.demo</groupId>
 	<artifactId>de.dlr.maven.tycho.demo.parent</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>DLR Maven Tycho Demo Parent POM</name>
 	<organization>
@@ -18,7 +18,7 @@
 		<tycho-version>1.2.0</tycho-version>
 		<tycho-extras-version>1.2.0</tycho-extras-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<build.version>0.1.0</build.version>
+		<build.version>0.2.0</build.version>
 		<build.qualifier>'t'yyyyMMddHHmm</build.qualifier>
 		<build.folder.target>../builds</build.folder.target>
 		<build.folder.p2>p2</build.folder.p2>

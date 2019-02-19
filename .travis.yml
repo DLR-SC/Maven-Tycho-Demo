@@ -66,6 +66,8 @@ jobs:
       name: Clean Install Feature Build
       script:
       - mvn clean install -P development,deployUnsecured -B -V
+      after_success:
+      - bash < (curl -s https://codecov.io/bash)
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.
@@ -75,6 +77,8 @@ jobs:
       name: Clean Install Deploy Development
       script:
       - mvn clean install -P development,deployUnsecured -B -V
+      after_success:
+      - bash < (curl -s https://codecov.io/bash)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 
@@ -133,6 +137,8 @@ jobs:
       name: Clean Install Deploy Integration
       script:
       - mvn clean install -P integration,deployUnsecured -B -V
+      after_success:
+      - bash < (curl -s https://codecov.io/bash)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 
@@ -191,6 +197,8 @@ jobs:
       name: Clean Install Deploy Release
       script:
       - mvn clean install -P release,deployBackuped -B -V
+      after_success:
+      - bash < (curl -s https://codecov.io/bash)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 

@@ -36,7 +36,7 @@ jobs:
     # deploy when tagged.
     #------------------------------------------------------------
     - stage: clean-install
-      if: branch NOT IN (integration, development, integration_snapshot, development_snapshot, /^Release/)
+      if: branch NOT IN (integration, development, integration_snapshot, development_snapshot) AND NOT (tag =~ /^Release/)
       name: Clean Install Feature Build
       script:
       - mvn clean install -P development,deployUnsecured -B -V

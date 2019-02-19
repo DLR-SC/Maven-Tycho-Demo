@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.dlr.maven.tycho.demo</groupId>
 	<artifactId>de.dlr.maven.tycho.demo.parent</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>DLR Maven Tycho Demo Parent POM</name>
 	<organization>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DLR Maven Tycho Demo - Third Party Library - JFreeChart
 Bundle-SymbolicName: de.dlr.maven.tycho.demo.external.lib.jfreechart;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: de.dlr.maven.tycho.demo.external.lib.jfreechart.Activator
 Require-Bundle: org.eclipse.swt,
  org.eclipse.ui,

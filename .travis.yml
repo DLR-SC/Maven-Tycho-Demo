@@ -67,7 +67,7 @@ jobs:
       script:
       - mvn clean install -P development,deployUnsecured -B -V
       after_success:
-      - bash < (curl -s https://codecov.io/bash)
+      - bash <(curl -s https://codecov.io/bash)
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.

@@ -85,8 +85,8 @@ jobs:
       # ---------------------------------------------    
       - provider: script
         skip_cleanup: true
-        script: # rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/<dir> <ssh-user>@<deploy-host>:path/to/files
-        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/TravisTest/
+        script: # 
+        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
         on:
           all_branches: true
     # -----------------------------------------------------------
@@ -99,16 +99,14 @@ jobs:
       script:
       - mvn clean install -P development,deployUnsecured -B -V
       before_deploy:
-      # ----------------------------------------
-      # Decrypt the key for accessign the 
-      # deployment store and add it to ssh-agent
-      # ----------------------------------------
-      - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out id_ed25519 -d
-      - eval "$(ssh-agent -s)"
-      - chmod 600 /tmp/id_ed25519
-      - ssh-add /tmp/id_ed25519
-      before_deploy:
-        # -----------------------------------------------------------
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/id_ed25519
+        - ssh-add /tmp/id_ed25519# -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
         # apparently perform a git fetch before, and overwrite the
@@ -123,7 +121,7 @@ jobs:
         # Now attach the release to the newly created tag.
         # release is attached to the tag on the current commit.
         # -----------------------------------------------------------
-        provider: releases
+      - provider: releases
         api_key: $GITHUB_API_TOKEN
         file_glob: true
         file:
@@ -139,6 +137,16 @@ jobs:
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: development
+      # ---------------------------------------------
+      # push build to sourceforge repo for deployment
+      # ---------------------------------------------    
+      - provider: script
+        skip_cleanup: true
+        script: # 
+        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
+        on:
+          repo: DLR-SC/Maven-Tycho-Demo
+          branch: development
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Integration.
     #------------------------------------------------------------
@@ -148,6 +156,14 @@ jobs:
       script:
       - mvn clean install -P integration,deployUnsecured -B -V
       before_deploy:
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/id_ed25519
+        - ssh-add /tmp/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -163,7 +179,7 @@ jobs:
         # Now attach the release to the newly created tag.
         # release is attached to the tag on the current commit.
         # -----------------------------------------------------------
-        provider: releases
+      - provider: releases
         api_key: $GITHUB_API_TOKEN
         file_glob: true
         file: 
@@ -179,6 +195,16 @@ jobs:
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: integration
+      # ---------------------------------------------
+      # push build to sourceforge repo for deployment
+      # ---------------------------------------------    
+      - provider: script
+        skip_cleanup: true
+        script: # 
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
+        on:
+          repo: DLR-SC/Maven-Tycho-Demo
+          branch: integration
     # -----------------------------------------------------------
     # Deploy Jobs for secured Releases.
     #------------------------------------------------------------
@@ -187,11 +213,20 @@ jobs:
       name: Clean Install Deploy Release
       script:
       - mvn clean install -P release,deployBackuped -B -V
+      before_deploy:
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - eval "$(ssh-agent -s)"
+        - chmod 600 /tmp/id_ed25519
+        - ssh-add /tmp/id_ed25519
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.
         # -----------------------------------------------------------
-        provider: releases
+      - provider: releases
         api_key: $GITHUB_API_TOKEN
         file_glob: true
         file: 
@@ -205,6 +240,16 @@ jobs:
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           tags: true
+      # ---------------------------------------------
+      # push build to sourceforge repo for deployment
+      # ---------------------------------------------    
+      - provider: script
+        skip_cleanup: true
+        script: # 
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
+        on:
+          repo: DLR-SC/Maven-Tycho-Demo
+          branch: integration
           
           
           

@@ -45,6 +45,10 @@ This example intends to represent a realistic scenario for building an Eclipse b
  - Standalone Maven Tycho build process
  - Eclipse IDE Integrated Maven Tycho build process
 
+## Downloads and Deployment
+
+Deployments are done using GitHub Releases as well as sourcforge: https://sourceforge.net/projects/maven-tycho-demo/files/
+
 ## Software Engineering Requirements
 
 This project follows DLR Software Engineering Requirements for application class 1 as documented in the [Checklist](se_checklist_app_class_1.md).

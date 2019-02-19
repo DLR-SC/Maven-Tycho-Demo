@@ -70,32 +70,20 @@
 		     Task: updateVersion - Update Build Version in POM for deployment
 		     ===================================================== -->
 		<replaceregexp byline="true">
-			<regexp pattern="&lt;build.version&gt;${version.pattern}-SNAPSHOT&lt;/build.version&gt;" />
-			<substitution expression="&lt;build.version&gt;${version.new}-SNAPSHOT&lt;/build.version&gt;" />
+			<regexp pattern="&lt;build.version&gt;${version.pattern}&lt;/build.version&gt;" />
+			<substitution expression="&lt;build.version&gt;${version.new}&lt;/build.version&gt;" />
 			<fileset dir=".">
 				<exclude name="**/target/"/>
 				<include name="**/pom.xml" />
 			</fileset>
 		</replaceregexp>
-
+		
 		<replaceregexp byline="true">
 			<regexp pattern="&lt;version&gt;${version.pattern}-SNAPSHOT&lt;/version&gt;" />
 			<substitution expression="&lt;version&gt;${version.new}-SNAPSHOT&lt;/version&gt;" />
 			<fileset dir=".">
 				<exclude name="**/target/" />
 				<include name="**/pom.xml" />
-			</fileset>
-		</replaceregexp>
-
-		<!-- =====================================================
-		     Task: updateVersion - Update Build Version in POM for deployment
-		     ===================================================== -->
-		<replaceregexp byline="true">
-			<regexp pattern="&lt;version&gt;${version.pattern}-SNAPSHOT&lt;/version&gt;" />
-			<substitution expression="&lt;version&gt;${version.new}-SNAPSHOT&lt;/version&gt;" />
-			<fileset dir=".">
-				<exclude name="${group.id}.**/target/"/>
-				<include name="${group.id}.**/**/pom.xml" />
 			</fileset>
 		</replaceregexp>
 

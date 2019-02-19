@@ -36,7 +36,7 @@ jobs:
     # deploy when tagged.
     #------------------------------------------------------------
     - stage: clean-install
-      if: branch NOT IN (integration, development, integration_snapshot, development_snapshot)
+      if: branch NOT IN (integration, development, integration_snapshot, development_snapshot, /^Release/)
       name: Clean Install Feature Build
       script:
       - mvn clean install -P development,deployUnsecured -B -V
@@ -201,7 +201,7 @@ jobs:
         - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
-          branch: integration
+          tags: true
           
           
           

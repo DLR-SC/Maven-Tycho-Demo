@@ -11,8 +11,8 @@ cache:
 # Start the XVFB Service for ui testing as suggested
 # by the travis documentation
 # --------------------------------------------------
-services:
-  - xvfb
+#services:
+#  - xvfb
 
 addons:
   # -----------------------------------------------------------
@@ -40,6 +40,7 @@ stages:
 
 env:
   global:
+  - DISPLAY=:99.0
   # ---------------------------------------------
   # API Token for access to github
   # ---------------------------------------------
@@ -49,6 +50,7 @@ before_script:
   # -----------------------------------
   # Startup the metacity window manager
   # -----------------------------------
+  - sh -e /etc/init.d/xvfb start
   - metacity --sm-disable --replace 2> metacity.err &
 
 jobs:

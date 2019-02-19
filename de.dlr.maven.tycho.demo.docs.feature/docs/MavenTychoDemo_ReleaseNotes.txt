@@ -1,6 +1,19 @@
 Maven Tycho Demo Release Notes
 ------------------------------
 
+--------------------------------
+Release 0.2.0 (19 February 2019)
+
+New Features:
+	Added deployment to sourceforge
+	
+Usability Updates:
+	...
+
+Fixed Bugs:
+	Fixed update of product version in parent pom using ant script
+
+---------------------------------
 Release 0.1.0 (07 September 2018)
 
 New Features:

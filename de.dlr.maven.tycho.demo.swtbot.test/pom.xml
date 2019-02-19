@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>de.dlr.maven.tycho.demo.swtbot.test</artifactId>
+	<name>DLR Maven Tycho Demo - SWT Bot Test</name>
+	<parent>
+		<groupId>de.dlr.maven.tycho.demo</groupId>
+		<artifactId>de.dlr.maven.tycho.demo.parent</artifactId>
+		<version>0.2.0-SNAPSHOT</version>
+		<relativePath>../maven/pom.xml</relativePath>
+	</parent>
+	<packaging>eclipse-test-plugin</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+            	<groupId>org.eclipse.tycho</groupId>
+            	<artifactId>tycho-surefire-plugin</artifactId>
+            	<version>${tycho-version}</version>
+            	<configuration>
+            	    <includes>
+					  <include>**/*AllTest.java</include>
+					</includes>
+					<!-- Let the tests run for 20 minutes max. If time is exceeded kill the process. Apparently something is wrong -->
+					<forkedProcessTimeoutInSeconds>1200</forkedProcessTimeoutInSeconds>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<showEclipseLog>true</showEclipseLog>
+					<testFailureIgnore>true</testFailureIgnore>
+              		<useUIHarness>true</useUIHarness>
+        		    <useUIThread>false</useUIThread>
+		            <product>de.dlr.maven.tycho.demo.branding.ui.dlrMavenTychoDemo</product>
+              		<application>org.eclipse.ui.ide.workbench</application>
+            	</configuration>
+        	</plugin>
+		</plugins>
+	</build>
+</project>

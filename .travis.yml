@@ -86,7 +86,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
+        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
         on:
           all_branches: true
     # -----------------------------------------------------------

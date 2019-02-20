@@ -2,6 +2,12 @@
 
 A Maven Tycho Demo project for Eclipse RCP applications such as Virtual Satellite.
 
+## Project Status
+
+Development: [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=development)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/development/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo)
+Integration: [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=integration)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/integration/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo)
+Master: [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=master)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/master/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo)
+
 ## Purpose
 
 1. This project is a test setup to make Virtual Satellite open source. it helps to transform the software engineering processes from the internal towards the GitHub infrastructure. 

@@ -8,7 +8,7 @@ Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch
 
 Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=integration)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/integration/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) for *Integration* build.
 
-Status: [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=master)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/master/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) for *Master* build.
+Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=master)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/master/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) for *Master* build.
 
 ## Purpose
 

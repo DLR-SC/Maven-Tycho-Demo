@@ -40,36 +40,38 @@ public class Activator extends Plugin {
 		super.stop(context);
 	}
 
-	/**
-	 * This method creates a spotbug issue. uncomment to give it a try
-	 * @return true in case the random number is one, doesn't it ??!
-	 */
-	public boolean spotBugsExample() {
-		int i = (int) Math.random();
-		return (i == 1); 
-	}
+//	// uncomment the following method to create some spotbugs warnings
+//	/**
+//	 * This method creates a spotbug issue. uncomment to give it a try
+//	 * @return true in case the random number is one, doesn't it ??!
+//	 */
+//	public boolean spotBugsExample() {
+//		int i = (int) Math.random();
+//		return (i == 1); 
+//	}
 	
-	String name;
 	
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
+//	@Override
+//	public int hashCode() {
+//		return super.hashCode();
+//	}
+
+//	String name;
 	
-	/**
-	 * test the method
-	 * @param o object
-	 * @return boolean
-	 */
-	public boolean equals(Object o) {
-	    if (o instanceof Activator) {
-			return name.equals(((Activator) o).name);
-		} else if (o instanceof String) {
-			return name.equals(o);
-		} else {
-			return false;
-		}
-	}
+//	/**
+//	 * test the method
+//	 * @param o object
+//	 * @return boolean
+//	 */
+//	public boolean equals(Object o) {
+//	    if (o instanceof Activator) {
+//			return name.equals(((Activator) o).name);
+//		} else if (o instanceof String) {
+//			return name.equals(o);
+//		} else {
+//			return false;
+//		}
+//	}
 	
 //	public void methodWithoutComment() {
 //		// This method has no comment header which should make the travis build complain.

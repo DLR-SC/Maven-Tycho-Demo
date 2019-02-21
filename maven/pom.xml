@@ -115,7 +115,7 @@
 				<version>${tycho-version}</version>
 				<configuration>
 					<showWarnings>true</showWarnings>
-					<useProjectSettings>false</useProjectSettings>
+					<useProjectSettings>true</useProjectSettings>
 				</configuration>
 			</plugin>
 

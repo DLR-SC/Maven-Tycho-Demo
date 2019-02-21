@@ -31,7 +31,6 @@ public class Activator extends Plugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-
 	}
 
 	@Override
@@ -39,7 +38,14 @@ public class Activator extends Plugin {
 		plugin = null;
 		super.stop(context);
 	}
-
+	
+	// uncomment the following method to create compile warnings
+	/**
+	 * A method that is never used
+	 */
+	private void unusedMethod() {
+	}
+	
 //	// uncomment the following method to create some spotbugs warnings
 //	/**
 //	 * This method creates a spotbug issue. uncomment to give it a try

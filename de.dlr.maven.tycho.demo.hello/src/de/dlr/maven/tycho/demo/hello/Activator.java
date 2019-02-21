@@ -40,6 +40,10 @@ public class Activator extends Plugin {
 		super.stop(context);
 	}
 
+	public void methodWithoutComment() {
+		// This method has no comment header which should make the travis build complain.
+	}
+	
 	/**
 	 * Returns the shared instance
 	 *

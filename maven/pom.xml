@@ -194,7 +194,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- Enabling use of spotbugs -->
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
@@ -243,9 +243,10 @@
 							<propertyExpansion>samedir=${project.basedir}/../checkStyle</propertyExpansion>
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
-							<failsOnError>true</failsOnError>
+							<logViolationsToConsole>true</logViolationsToConsole>
+							<failOnViolation>true</failOnViolation>
 							<linkXRef>false</linkXRef>
-							<!-- violationSeverity>warning</violationSeverity -->
+							<violationSeverity>warning</violationSeverity>
 						</configuration>
 						<goals>
 							<goal>check</goal>

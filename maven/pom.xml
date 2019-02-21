@@ -153,6 +153,23 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<format>${build.qualifier}</format>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+			</plugin>
+
 			<!-- Enabling use of jacoco -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -173,24 +190,35 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			
+			<!-- Enabling use of spotbugs -->
 			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>${tycho-version}</version>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.3</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs</artifactId>
+						<version>3.1.3</version>
+					</dependency>
+				</dependencies>
 				<configuration>
-					<format>${build.qualifier}</format>
-					<archive>
-						<addMavenDescriptor>false</addMavenDescriptor>
-					</archive>
+					<excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+					<includeFilterFile>spotbugs-include.xml</includeFilterFile>
 				</configuration>
+				<executions>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-			</plugin>
-
+			<!-- Enabling use of Checkstyle -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -263,7 +291,6 @@
 										extension(com.basistech.m2e.code.quality.checkstyle_1.0.0.201705301746)</comment>
 								</pluginExecution>
 							</pluginExecutions>
-
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>

@@ -208,7 +208,6 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<debug>true</debug>
 					<excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
 					<includeFilterFile>spotbugs-include.xml</includeFilterFile>
 				</configuration>

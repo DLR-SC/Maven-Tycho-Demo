@@ -188,7 +188,7 @@ public class IntroPart implements IIntroPart {
 	 * Little embedded class to define a mouse listener on the text label in the Welcome Screen
 	 *
 	 */
-	class MyMouseListener implements MouseListener {
+	static class MyMouseListener implements MouseListener {
 		
 		@Override
 		public void mouseDoubleClick(MouseEvent e) {

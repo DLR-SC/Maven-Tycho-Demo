@@ -8,8 +8,6 @@
 package de.dlr.maven.tycho.demo.hello.say;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 
 /**

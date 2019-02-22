@@ -75,6 +75,7 @@ jobs:
       # -------------------------------------------------------
       - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
       - echo "Check for warnings:"
+      - cat maven.log
       - (grep -n "\[WARNING\]|\[ERROR\]" maven.log || exit 0 && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)

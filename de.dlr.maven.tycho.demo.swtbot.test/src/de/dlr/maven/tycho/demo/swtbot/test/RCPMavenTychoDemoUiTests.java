@@ -8,6 +8,8 @@
 package de.dlr.maven.tycho.demo.swtbot.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.junit.Test;
 
@@ -43,5 +45,10 @@ public class RCPMavenTychoDemoUiTests {
     	
     	// Check the answer is correct
     	assertEquals("Answer was correct", "Hello to my friend DLR", answerString);
+    }
+    
+    @Test
+    public void testFail() {
+    	fail("fail");
     }
 }

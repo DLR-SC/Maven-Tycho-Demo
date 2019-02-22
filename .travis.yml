@@ -70,7 +70,10 @@ jobs:
       # use this log file to analyze it for compiler warnings
       # -------------------------------------------------------
       - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
+      - echo "Check for warnings:"
       - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.
@@ -84,7 +87,10 @@ jobs:
       # use this log file to analyze it for compiler warnings
       # -------------------------------------------------------
       - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
+      - echo "Check for warnings:"
       - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 
@@ -147,7 +153,10 @@ jobs:
       # use this log file to analyze it for compiler warnings
       # -------------------------------------------------------
       - mvn clean install -P integration,deployUnsecured -B -V | tee maven.log
+      - echo "Check for warnings:"
       - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 
@@ -210,7 +219,10 @@ jobs:
       # use this log file to analyze it for compiler warnings
       # -------------------------------------------------------
       - mvn clean install -P release,deployBackuped -B -V | tee maven.log
+      - echo "Check for warnings:"
       - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 

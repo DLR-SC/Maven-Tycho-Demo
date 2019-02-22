@@ -8,6 +8,7 @@
 package de.dlr.maven.tycho.demo.hello.say;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -20,6 +21,11 @@ public class SayHelloTest {
 	public void testToMyFriend() {
 		assertEquals("Greetings to my correct friend", "Hello to my friend Jan", new SayHello().toMyFriend("Jan"));
 		assertEquals("Greetings to my correct friend", "Hello to my friend Marie", new SayHello().toMyFriend("Marie"));
+	}
+
+	@Test
+	public void testFailSomething() {
+		fail("fail");
 	}
 
 }

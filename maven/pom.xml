@@ -67,12 +67,6 @@
 		</profile>
 		<profile>
 			<id>integration</id>
-			<activation>
-				<property>
-					<name>GIT_BRANCH</name>
-					<value>origin/integration</value>
-				</property>
-			</activation>
 			<properties>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>
 				<build.folder.type>integration/${build.version}</build.folder.type>
@@ -82,12 +76,6 @@
 		</profile>
 		<profile>
 			<id>release</id>
-			<activation>
-				<property>
-					<name>GIT_BRANCH</name>
-					<value>origin/master</value>
-				</property>
-			</activation>
 			<properties>
 				<build.deploy.release>true</build.deploy.release>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>

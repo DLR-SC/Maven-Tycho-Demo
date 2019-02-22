@@ -65,7 +65,8 @@ jobs:
       if: branch NOT IN (integration, development, integration_snapshot, development_snapshot) AND NOT (tag =~ /^Release/)
       name: Clean Install Feature Build
       script:
-      - mvn clean install -P development,deployUnsecured -B -V
+      - mvn clean install -P development,deployUnsecured -B -V --log-file maven.log
+      - cat maven.log
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.

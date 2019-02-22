@@ -53,6 +53,10 @@ before_script:
   # -----------------------------------
   - metacity --sm-disable --replace 2> metacity.err &
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+
 jobs:
   include:
     # -----------------------------------------------------------

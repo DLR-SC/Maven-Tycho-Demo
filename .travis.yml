@@ -69,7 +69,15 @@ jobs:
       if: branch NOT IN (integration, development, integration_snapshot, development_snapshot) AND NOT (tag =~ /^Release/)
       name: Clean Install Feature Build
       script:
-      - mvn clean install -P development,deployUnsecured -B -V
+      # -------------------------------------------------------
+      # call the maven build and store the output in a log file
+      # use this log file to analyze it for compiler warnings
+      # -------------------------------------------------------
+      - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
+      - echo "Check for warnings:"
+      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
     # -----------------------------------------------------------
     # Deploy Jobs for unsecured Development.
     # Development job only. Feature jobs are not deployed.
@@ -78,7 +86,15 @@ jobs:
       if: branch = development
       name: Clean Install Deploy Development
       script:
-      - mvn clean install -P development,deployUnsecured -B -V
+      # -------------------------------------------------------
+      # call the maven build and store the output in a log file
+      # use this log file to analyze it for compiler warnings
+      # -------------------------------------------------------
+      - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
+      - echo "Check for warnings:"
+      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 
@@ -136,7 +152,15 @@ jobs:
       if: branch = integration
       name: Clean Install Deploy Integration
       script:
-      - mvn clean install -P integration,deployUnsecured -B -V
+      # -------------------------------------------------------
+      # call the maven build and store the output in a log file
+      # use this log file to analyze it for compiler warnings
+      # -------------------------------------------------------
+      - mvn clean install -P integration,deployUnsecured -B -V | tee maven.log
+      - echo "Check for warnings:"
+      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 
@@ -194,7 +218,15 @@ jobs:
       if: tag =~ /^Release/
       name: Clean Install Deploy Release
       script:
-      - mvn clean install -P release,deployBackuped -B -V
+      # -------------------------------------------------------
+      # call the maven build and store the output in a log file
+      # use this log file to analyze it for compiler warnings
+      # -------------------------------------------------------
+      - mvn clean install -P release,deployBackuped -B -V | tee maven.log
+      - echo "Check for warnings:"
+      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - echo "Check for failed test cases:"
+      - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
         # ----------------------------------------
         # Decrypt the key for accessign the 

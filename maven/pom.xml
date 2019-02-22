@@ -61,12 +61,6 @@
 		</profile>
 		<profile>
 			<id>integration</id>
-			<activation>
-				<property>
-					<name>GIT_BRANCH</name>
-					<value>origin/integration</value>
-				</property>
-			</activation>
 			<properties>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>
 				<build.folder.type>integration/${build.version}</build.folder.type>
@@ -76,12 +70,6 @@
 		</profile>
 		<profile>
 			<id>release</id>
-			<activation>
-				<property>
-					<name>GIT_BRANCH</name>
-					<value>origin/master</value>
-				</property>
-			</activation>
 			<properties>
 				<build.deploy.release>true</build.deploy.release>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>
@@ -109,7 +97,7 @@
 				<version>${tycho-version}</version>
 				<configuration>
 					<showWarnings>true</showWarnings>
-					<useProjectSettings>false</useProjectSettings>
+					<useProjectSettings>true</useProjectSettings>
 				</configuration>
 			</plugin>
 
@@ -190,7 +178,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- Enabling use of spotbugs -->
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
@@ -239,9 +227,10 @@
 							<propertyExpansion>samedir=${project.basedir}/../checkStyle</propertyExpansion>
 							<encoding>UTF-8</encoding>
 							<consoleOutput>true</consoleOutput>
-							<failsOnError>true</failsOnError>
+							<logViolationsToConsole>true</logViolationsToConsole>
+							<failOnViolation>true</failOnViolation>
 							<linkXRef>false</linkXRef>
-							<!-- violationSeverity>warning</violationSeverity -->
+							<violationSeverity>warning</violationSeverity>
 						</configuration>
 						<goals>
 							<goal>check</goal>

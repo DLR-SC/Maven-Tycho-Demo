@@ -8,7 +8,6 @@
 package de.dlr.maven.tycho.demo.hello.say;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 /**
@@ -22,4 +21,9 @@ public class SayHelloTest {
 		assertEquals("Greetings to my correct friend", "Hello to my friend Marie", new SayHello().toMyFriend("Marie"));
 	}
 
+//  Uncomment the following lines to make travis break on unit tests.	
+//	@Test
+//	public void testFailSomething() {
+//		fail("fail");
+//	}
 }

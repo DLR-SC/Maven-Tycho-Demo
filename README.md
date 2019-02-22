@@ -19,8 +19,9 @@ Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch
 
 This Maven Tycho Demo is based on Java / Eclipse. The following infrastructure is required:
  - Java Development Kit (JDK) 8
- - Eclipse Oxygen
+ - Eclipse Oxygen or newer
    - Including Checkstyle
+   - Including Spotbugs
    - Including M2E
  - Maven 3
  - Windows 7 or Linux Computer
@@ -50,6 +51,7 @@ This example intends to represent a realistic scenario for building an Eclipse b
  - Examples for Test Fragments	
  - Integration of JUnit tests
  - Integration of Checkstyle tests
+ - Integration of Spotbug checks
  - Standalone Maven Tycho build process
  - Eclipse IDE Integrated Maven Tycho build process
 

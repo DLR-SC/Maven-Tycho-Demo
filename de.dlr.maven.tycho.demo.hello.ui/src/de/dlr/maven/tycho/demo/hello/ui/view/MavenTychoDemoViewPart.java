@@ -86,7 +86,7 @@ public class MavenTychoDemoViewPart extends ViewPart {
 	 * Factory to help creating SWT GridLayout LaoutDatas
 	 *
 	 */
-	class GridDataFactory {
+	static class GridDataFactory {
 
 		GridData gridData = new GridData();
 

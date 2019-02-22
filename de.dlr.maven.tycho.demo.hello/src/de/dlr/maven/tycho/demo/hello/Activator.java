@@ -39,12 +39,12 @@ public class Activator extends Plugin {
 		super.stop(context);
 	}
 	
-//	// uncomment the following method to create compile warnings
-//	/**
-//	 * A method that is never used
-//	 */
-//	private void unusedMethod() {
-//	}
+	// uncomment the following method to create compile warnings
+	/**
+	 * A method that is never used
+	 */
+	private void unusedMethod() {
+	}
 	
 //	// uncomment the following method to create some spotbugs warnings
 //	/**

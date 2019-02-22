@@ -23,9 +23,9 @@ public class SayHelloTest {
 		assertEquals("Greetings to my correct friend", "Hello to my friend Marie", new SayHello().toMyFriend("Marie"));
 	}
 
-	@Test
-	public void testFailSomething() {
-		fail("fail");
-	}
-
+//  Uncomment the following lines to make travis break on unit tests.	
+//	@Test
+//	public void testFailSomething() {
+//		fail("fail");
+//	}
 }

@@ -5,6 +5,7 @@ properties.0.value = DLR (German Aerospace Center)
 # Remove root files contributed by Eclipse RCP
 ##
 instructions.configure=\
+    org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/readme/);\
     org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/launcher.exe);\
     org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/eclipsec.exe);
 

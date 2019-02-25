@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DLR Maven Tycho Demo - SWT Bot Test
+Bundle-SymbolicName: de.dlr.maven.tycho.demo.swtbot.test
+Bundle-Version: 0.3.0.qualifier
+Automatic-Module-Name: de.dlr.maven.tycho.demo.swtbot.test
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: DLR (German Aerospace Center)
+Require-Bundle: de.dlr.maven.tycho.demo.branding.ui,
+ de.dlr.maven.tycho.demo.docs.api,
+ de.dlr.maven.tycho.demo.external.lib.jfreechart,
+ de.dlr.maven.tycho.demo.hello,
+ de.dlr.maven.tycho.demo.hello.ui,
+ org.eclipse.swtbot.go,
+ org.eclipse.swtbot.junit4_x,
+ org.eclipse.swtbot.swt.finder

@@ -2,10 +2,10 @@
 <feature
       id="de.dlr.maven.tycho.demo.test.feature"
       label="DLR Maven Tycho Demo - Test Feature"
-      version="0.2.0.qualifier"
+      version="0.3.0.qualifier"
       provider-name="DLR (German Aerospace Center)"
       license-feature="de.dlr.maven.tycho.demo.license.feature"
-      license-feature-version="0.2.0.qualifier">
+      license-feature-version="0.3.0.qualifier">
 
    <description>
       Feature for workspace-wide Test Execution
@@ -14,12 +14,12 @@ German Aerospace Center (DLR e.V.)
 Simulation and Software Technology
    </description>
 
-  <copyright>
-      Copyright (c) 2008-2018 German Aerospace Center (DLR), Simulation and Software Technology, Germany.
+   <copyright>
+      Copyright (c) 2008-2019 German Aerospace Center (DLR), Simulation and Software Technology, Germany.
 All rights reserved. This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
+are made available under the terms of the Eclipse Public License v2.0
 which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+http://www.eclipse.org/legal/epl-2.0
    </copyright>
 
    <license url="%licenseURL">
@@ -41,6 +41,13 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="de.dlr.maven.tycho.demo.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="de.dlr.maven.tycho.demo.swtbot.test"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -2,11 +2,11 @@
 <feature
       id="de.dlr.maven.tycho.demo.hello.feature"
       label="DLR Maven Tycho Demo - Hello World Feature"
-      version="0.2.0.qualifier"
+      version="0.3.0.qualifier"
       provider-name="DLR (German Aerospace Center)"
       plugin="de.dlr.maven.tycho.demo.branding.ui"
       license-feature="de.dlr.maven.tycho.demo.license.feature"
-      license-feature-version="0.2.0.qualifier">
+      license-feature-version="0.3.0.qualifier">
 
    <description>
       Feature for documentation and release notes.
@@ -15,11 +15,11 @@ Simulation and Software Technology
    </description>
 
    <copyright>
-      Copyright (c) 2008-2018 German Aerospace Center (DLR), Simulation and Software Technology, Germany.
+      Copyright (c) 2008-2019 German Aerospace Center (DLR), Simulation and Software Technology, Germany.
 All rights reserved. This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
+are made available under the terms of the Eclipse Public License v2.0
 which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+http://www.eclipse.org/legal/epl-2.0
    </copyright>
 
    <license url="%licenseURL">

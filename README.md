@@ -4,11 +4,11 @@ A Maven Tycho Demo project for Eclipse RCP applications such as Virtual Satellit
 
 ## Project Status
 
-Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=development)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/development/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) for *Development* build.
+Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=development)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/development/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) [![Download Maven-Tycho-Demo](https://img.shields.io/sourceforge/dt/maven-tycho-demo.svg)](https://sourceforge.net/projects/maven-tycho-demo/files/development/) for *Development* build.
 
-Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=integration)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/integration/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) for *Integration* build.
+Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=integration)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/integration/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) [![Download Maven-Tycho-Demo](https://img.shields.io/sourceforge/dt/maven-tycho-demo.svg)](https://sourceforge.net/projects/maven-tycho-demo/files/integration/) for *Integration* build.
 
-Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=master)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/master/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) for *Master* build.
+Status [![Build Status](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo.svg?branch=master)](https://travis-ci.org/DLR-SC/Maven-Tycho-Demo) [![Coverage Status](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo/branch/master/graph/badge.svg)](https://codecov.io/gh/DLR-SC/Maven-Tycho-Demo) [![Download Maven-Tycho-Demo](https://img.shields.io/sourceforge/dt/maven-tycho-demo.svg)](https://sourceforge.net/projects/maven-tycho-demo/files/release/) for *Master* build.
 
 ## Purpose
 
@@ -37,6 +37,14 @@ This Maven Tycho Demo is based on Java / Eclipse. The following infrastructure i
 7. Inspect the build artifacts for the p2 repository in _de.dlr.maven.tycho.p2updatesite/target_
 7. Inspect the build RCP application in _de.dlr.maven.tycho.product/target_
 
+## Travis CI and Releases
+
+Tarvis CI is set-up to start a build job for every branch and every new commit to the repository. It executes all relevant tests such as jUnit, SWTBot, Checkstyle, SpotBugs, etc. Making a successful pull-request into development requires all tests to pass.
+
+Starting a Travis CI job on development or integration deploys all relevant artifacts.
+
+For creating a new release, create a tag starting with *Release_* on the *master* branch. All artifacts are automatically deployed.
+
 ## Provided Features
 
 This example intends to represent a realistic scenario for building an Eclipse based RCP application such as Virtual Satellite. Accordingly it provides the following features:
@@ -57,7 +65,7 @@ This example intends to represent a realistic scenario for building an Eclipse b
 
 ## Downloads and Deployment
 
-Deployments are done using GitHub Releases as well as sourcforge: https://sourceforge.net/projects/maven-tycho-demo/files/
+Deployments are done using GitHub Releases as well as sourceforge: [![Download Maven-Tycho-Demo](https://sourceforge.net/sflogo.php?type=13&group_id=3065053)](https://sourceforge.net/projects/maven-tycho-demo/files/)
 
 ## Software Engineering Requirements
 
@@ -69,12 +77,12 @@ This project is currently not open for contribution. In case you need or want to
 
 ## License
 
-Copyright 2018 German Aerospace Center (DLR)
+Copyright 2019 German Aerospace Center (DLR)
 
-The German Aerospace Center (DLR) makes available all content in this plug-in ("Content"). Unless otherwise indicated below, the Content is provided to you under the terms and conditions of the Eclipse Public License Version 1.0 ("EPL"). A copy of the EPL is available at http://www.eclipse.org/legal/epl-v10.html or provided with this Content. For purposes of the EPL, "Program" will mean the Content.
+The German Aerospace Center (DLR) makes available all content in this plug-in ("Content").  Unless otherwise indicated below, the Content is provided to you under the terms and conditions of the Eclipse Public License Version 2.0 ("EPL").  A copy of the EPL is available at https://www.eclipse.org/legal/epl-2.0. For purposes of the EPL, "Program" will mean the Content.
 
-If you did not receive this Content directly from German Aerospace Center (DLR), the Content is being redistributed by another party ("Redistributor") and different terms and conditions may apply to your use of any object code in the Content. Check the Redistributor's license that was provided with the Content. If no such license exists, contact the Redistributor. Unless otherwise indicated below, the terms and conditions of the EPL still apply to this content.
+If you did not receive this Content directly from German Aerospace Center (DLR), the Content is being redistributed by another party ("Redistributor") and different terms and conditions may apply to your use of any object code in the Content.  Check the Redistributor's license that was provided with the Content.  If no such license exists, contact the Redistributor.  Unless otherwise indicated below, the terms and conditions of the EPL still apply to this content.<p>
 
 ## Third Party Licenses
 
-Their party licenses are named in the plugins where used in the respective _aboutfiles_ folders. At runtime third party licenses can be viewed in the usual Eclipse About dialog.
+Third party licenses are named in the plug-ins where used in the respective _aboutfiles_ folders. At runtime third party licenses can be viewed in the usual Eclipse About dialog.

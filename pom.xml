@@ -26,5 +26,5 @@
 		<module>de.dlr.maven.tycho.demo.swtbot.test</module>
 	</modules>
 	<groupId>de.dlr.maven.tycho.demo</groupId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.3.0-SNAPSHOT</version>
 </project>

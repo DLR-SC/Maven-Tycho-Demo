@@ -75,7 +75,8 @@ jobs:
       # -------------------------------------------------------
       - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
       - echo "Check for warnings:"
-      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - cat maven.log
+      - (grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log || exit 0  && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
     # -----------------------------------------------------------
@@ -92,7 +93,7 @@ jobs:
       # -------------------------------------------------------
       - mvn clean install -P development,deployUnsecured -B -V | tee maven.log
       - echo "Check for warnings:"
-      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - (grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log || exit 0  && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
@@ -158,7 +159,7 @@ jobs:
       # -------------------------------------------------------
       - mvn clean install -P integration,deployUnsecured -B -V | tee maven.log
       - echo "Check for warnings:"
-      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - (grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log || exit 0  && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
@@ -224,7 +225,7 @@ jobs:
       # -------------------------------------------------------
       - mvn clean install -P release,deployBackuped -B -V | tee maven.log
       - echo "Check for warnings:"
-      - (grep -n "\[WARNING\]" maven.log || exit 0 && exit 1;)
+      - (grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log || exit 0  && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
@@ -264,6 +265,4 @@ jobs:
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           tags: true
-          
-          
           

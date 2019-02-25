@@ -73,7 +73,13 @@ This project follows DLR Software Engineering Requirements for application class
  
 ## Contribution
 
-This project is currently not open for contribution. In case you need or want to contribute, please contact us. 
+To contribute to this project follow the given steps:
+
+1. Create your own fork of the project.
+2. Apply your changes.
+3. Create a pull-request of your change to our development branch.
+
+To increase chance that we accept your pull-request, make sure all tests are working. The best indicator is the Travis CI job. Next we will review your pull-request, give comments and maybe accept it.
 
 ## License
 

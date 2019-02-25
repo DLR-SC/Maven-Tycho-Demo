@@ -2,6 +2,21 @@ Maven Tycho Demo Release Notes
 ------------------------------
 
 --------------------------------
+Release 0.3.0 (25 February 2019)
+
+New Features:
+	Updated to Eclipse Public License (EPL) v2
+	Integrated UI tests based on SWTBot
+	Integrated Static Code Analysis with SpotBugs
+	Introduced Code Coverage with CodeCov.io
+	
+Usability Updates:
+	...
+
+Fixed Bugs:
+	Fixed issues with Travis CI stopping on warnings and bugs.
+
+--------------------------------
 Release 0.2.0 (19 February 2019)
 
 New Features:

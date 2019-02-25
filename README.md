@@ -40,7 +40,9 @@ This Maven Tycho Demo is based on Java / Eclipse. The following infrastructure i
 ## Travis CI and Releases
 
 Tarvis CI is set-up to start a build job for every branch and every new commit to the repository. It executes all relevant tests such as jUnit, SWTBot, Checkstyle, SpotBugs, etc. Making a successful pull-request into development requires all tests to pass.
+
 Starting a Travis CI job on development or integration will automatically deploy all relevant artifacts.
+
 For creating a new release, create a tag starting with *Release_* on the *master* branch. All artefacts will be automatically deployed.
 
 ## Provided Features

@@ -97,16 +97,6 @@ jobs:
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
-        # ----------------------------------------
-        # Decrypt the key for accessign the 
-        # deployment store and add it to ssh-agent
-        # ----------------------------------------
-        - mkdir /tmp/.sourceforge_ssh
-        - chmod 700 /tmp/.sourceforge_ssh 
-        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
-        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - eval "$(ssh-agent -s)"
-        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -143,7 +133,19 @@ jobs:
       # ---------------------------------------------    
       - provider: script
         skip_cleanup: true
-        script: # 
+        script: #
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - mkdir -m 700 /tmp/.sourceforge_ssh
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
+        - eval "$(ssh-agent -s)"
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
+        # ----------------------------------------
+        # And now rsync the build
+        # ----------------------------------------
         - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
@@ -165,16 +167,6 @@ jobs:
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
-        # ----------------------------------------
-        # Decrypt the key for accessign the 
-        # deployment store and add it to ssh-agent
-        # ----------------------------------------
-        - mkdir /tmp/.sourceforge_ssh
-        - chmod 700 /tmp/.sourceforge_ssh 
-        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
-        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - eval "$(ssh-agent -s)"
-        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -211,7 +203,19 @@ jobs:
       # ---------------------------------------------    
       - provider: script
         skip_cleanup: true
-        script: # 
+        script: #
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - mkdir -m 700 /tmp/.sourceforge_ssh
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
+        - eval "$(ssh-agent -s)"
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
+        # ----------------------------------------
+        # And now rsync the build
+        # ----------------------------------------
         - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
@@ -232,17 +236,6 @@ jobs:
       - (grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log || exit 0  && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
-      before_deploy:
-        # ----------------------------------------
-        # Decrypt the key for accessign the 
-        # deployment store and add it to ssh-agent
-        # ----------------------------------------
-        - mkdir /tmp/.sourceforge_ssh
-        - chmod 700 /tmp/.sourceforge_ssh 
-        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
-        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - eval "$(ssh-agent -s)"
-        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.
@@ -266,7 +259,19 @@ jobs:
       # ---------------------------------------------    
       - provider: script
         skip_cleanup: true
-        script: # 
+        script: #
+        # ----------------------------------------
+        # Decrypt the key for accessign the 
+        # deployment store and add it to ssh-agent
+        # ----------------------------------------
+        - mkdir -m 700 /tmp/.sourceforge_ssh
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
+        - eval "$(ssh-agent -s)"
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
+        # ----------------------------------------
+        # And now rsync the build
+        # ----------------------------------------
         - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
         on:
           repo: DLR-SC/Maven-Tycho-Demo

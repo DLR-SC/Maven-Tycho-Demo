@@ -103,7 +103,7 @@ jobs:
         # ----------------------------------------
         - mkdir /tmp/.sourceforge_ssh
         - chmod 700 /tmp/.sourceforge_ssh 
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
         - ssh-add /tmp/.sourceforge_ssh/id_ed25519
@@ -171,7 +171,7 @@ jobs:
         # ----------------------------------------
         - mkdir /tmp/.sourceforge_ssh
         - chmod 700 /tmp/.sourceforge_ssh 
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
         - ssh-add /tmp/.sourceforge_ssh/id_ed25519
@@ -239,7 +239,7 @@ jobs:
         # ----------------------------------------
         - mkdir /tmp/.sourceforge_ssh
         - chmod 700 /tmp/.sourceforge_ssh 
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
         - ssh-add /tmp/.sourceforge_ssh/id_ed25519

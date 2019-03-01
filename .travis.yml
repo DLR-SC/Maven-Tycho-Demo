@@ -101,10 +101,12 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - mkdir /tmp/.sourceforge_ssh
+        - chmod 700 /tmp/.sourceforge_ssh 
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -167,10 +169,12 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - mkdir /tmp/.sourceforge_ssh
+        - chmod 700 /tmp/.sourceforge_ssh 
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -233,10 +237,12 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - mkdir /tmp/.sourceforge_ssh
+        - chmod 700 /tmp/.sourceforge_ssh 
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.

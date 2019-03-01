@@ -101,10 +101,12 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - mkdir /tmp/.sourceforge_ssh
+        - chmod 700 /tmp/.sourceforge_ssh 
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -142,7 +144,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
+        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: development
@@ -167,10 +169,12 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - mkdir /tmp/.sourceforge_ssh
+        - chmod 700 /tmp/.sourceforge_ssh 
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -208,7 +212,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: integration
@@ -233,10 +237,12 @@ jobs:
         # Decrypt the key for accessign the 
         # deployment store and add it to ssh-agent
         # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
+        - mkdir /tmp/.sourceforge_ssh
+        - chmod 700 /tmp/.sourceforge_ssh 
+        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
         - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
+        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.
@@ -261,7 +267,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           tags: true

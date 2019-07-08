@@ -216,7 +216,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: integration
@@ -273,7 +273,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           tags: true

@@ -26,6 +26,7 @@ addons:
   apt:
     packages:
     - metacity
+    - expect
 
 install:
 - true

@@ -105,7 +105,7 @@ jobs:
         - mkdir -p -m 700 /tmp/.sourceforge_ssh
         - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p $ssh_password 2>/dev/null
+        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p ${ssh_password} 2>/dev/null
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -175,7 +175,7 @@ jobs:
         - mkdir -p -m 700 /tmp/.sourceforge_ssh
         - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p $ssh_password 2>/dev/null
+        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p ${ssh_password} 2>/dev/null
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -245,7 +245,7 @@ jobs:
         - mkdir -p -m 700 /tmp/.sourceforge_ssh
         - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p $ssh_password 2>/dev/null
+        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p ${ssh_password} 2>/dev/null
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.

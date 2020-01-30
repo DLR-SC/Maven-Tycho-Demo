@@ -1,8 +1,14 @@
-language: java
+dist: xenial
 
 jdk:
-- oraclejdk8
+- openjdk8
  
+services:
+  # -----------------------------------------------------
+  # Start up xvfb service for SWT bot GUI tests
+  # -----------------------------------------------------
+  - xvfb 
+
 cache:
   directories:
   - $HOME/.m2
@@ -33,21 +39,12 @@ stages:
 
 env:
   global:
-  # -------------------------------
-  # set the display for UI testing
-  # -------------------------------
-  - DISPLAY=:99.0
   # ---------------------------------------------
   # API Token for access to github
   # ---------------------------------------------
   - secure: SNRF9Ys0OTI6zoFn88N8gxsadU7Ifu+G7B5kJfBmtRnVXoubUmpbve+sBgmk9OuHcpcmUnxvs2sOopjBOQBjmFMF7pZ699e4z6KLyhZTJG4wqiYkeTAt5uUixSaZ3BE0C07qC3rA/u4OD1GlBEEDGhUvDzddbgmUotvoUUi3+BCwyUBTAw64oR4z5wJADWX6eGqvLZ4oEnpz95A3OuNxepStIVDPZE7eACl8nwqztKBRkS3xmV6kKCB2Hzclq4Bk0DPyLDPvomnTaswhssT/NxuV8c6VUH72cjPJWLnMCupkV2Gye7v7XomdfDWTZJv+mZfoWY8eZMn/+zWwbwvKVi2DuTMbjWfwNPyFYI12ZfIRW613S2TITYoLOedo6V4Sh2B8pMJZeeSosAmje9pOdQYTysRz9imTraWd7zEYsQEcUCwCvJEtLHDFOJhXZT4OZ3hOyEv2FSI831/UJRlXRxwQJCOsPXO7sLNy3qY3vHE8P7IJjy8F3Mzx7IzX21B1exquE+PnI2FW3AEMUjnySCm28QOMXHrsb5Qi4CoNz3RaRevQsjo6wVNr/Idgh0CEMvDLzbtilFfcwnfl3Fa2phcN+TT3e+u6UNTuZNHhpXl/+gfnq61VhlZNEE6q2U6g6Bk+YLhjCFEfY4fIcEd/LIWSJcJ0i9SOJ0VJL5VKw+I=
 
 before_script:
-  # --------------------------------------------------
-  # Start the XVFB Service for ui testing as suggested
-  # by the travis documentation
-  # --------------------------------------------------
-  - sh -e /etc/init.d/xvfb start
   # -----------------------------------
   # Startup the metacity window manager
   # -----------------------------------
@@ -106,9 +103,9 @@ jobs:
         # deployment store and add it to ssh-agent
         # ----------------------------------------
         - mkdir -p -m 700 /tmp/.sourceforge_ssh
-        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
+        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p $ssh_password 2>/dev/null
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -176,9 +173,9 @@ jobs:
         # deployment store and add it to ssh-agent
         # ----------------------------------------
         - mkdir -p -m 700 /tmp/.sourceforge_ssh
-        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
+        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p $ssh_password 2>/dev/null
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -246,9 +243,9 @@ jobs:
         # deployment store and add it to ssh-agent
         # ----------------------------------------
         - mkdir -p -m 700 /tmp/.sourceforge_ssh
-        - openssl aes-256-cbc -K $encrypted_e15af4b90c82_key -iv $encrypted_e15af4b90c82_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
         - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
-        - ssh-add /tmp/.sourceforge_ssh/id_ed25519
+        - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p $ssh_password 2>/dev/null
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.

@@ -33,7 +33,7 @@
          </property>
          <property
                name="aboutText"
-               value="DLR Maven Tycho Demo&#x0D;&#x0A;&#x0D;&#x0A;Version 0.3.0&#x0D;&#x0A;&#x0D;&#x0A;Copyright 2018 by German Aerospace Center (DLR) e.V.&#x0D;&#x0A;&#x0D;&#x0A;www.software.dlr.de&#x0D;&#x0A;&#x0D;&#x0A;German Aerospace Center (DLR) e.V.&#x0D;&#x0A;Lilienthalplatz 7&#x0D;&#x0A;38108 Braunschweig&#x0D;&#x0A;Germany">
+               value="DLR Maven Tycho Demo&#x0D;&#x0A;&#x0D;&#x0A;Version 0.4.0&#x0D;&#x0A;&#x0D;&#x0A;Copyright 2018 by German Aerospace Center (DLR) e.V.&#x0D;&#x0A;&#x0D;&#x0A;www.software.dlr.de&#x0D;&#x0A;&#x0D;&#x0A;German Aerospace Center (DLR) e.V.&#x0D;&#x0A;Lilienthalplatz 7&#x0D;&#x0A;38108 Braunschweig&#x0D;&#x0A;Germany">
          </property>
          <property
                name="aboutImage"

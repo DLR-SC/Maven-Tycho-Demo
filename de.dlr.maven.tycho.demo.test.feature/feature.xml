@@ -2,10 +2,10 @@
 <feature
       id="de.dlr.maven.tycho.demo.test.feature"
       label="DLR Maven Tycho Demo - Test Feature"
-      version="0.3.0.qualifier"
+      version="0.4.0.qualifier"
       provider-name="DLR (German Aerospace Center)"
       license-feature="de.dlr.maven.tycho.demo.license.feature"
-      license-feature-version="0.3.0.qualifier">
+      license-feature-version="0.4.0.qualifier">
 
    <description>
       Feature for workspace-wide Test Execution

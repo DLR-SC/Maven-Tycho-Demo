@@ -1,8 +1,14 @@
-language: java
+dist: xenial
 
 jdk:
-- oraclejdk8
+- openjdk8
  
+services:
+  # -----------------------------------------------------
+  # Start up xvfb service for SWT bot GUI tests
+  # -----------------------------------------------------
+  - xvfb 
+
 cache:
   directories:
   - $HOME/.m2
@@ -20,6 +26,7 @@ addons:
   apt:
     packages:
     - metacity
+    - expect
 
 install:
 - true
@@ -33,29 +40,31 @@ stages:
 
 env:
   global:
-  # -------------------------------
-  # set the display for UI testing
-  # -------------------------------
-  - DISPLAY=:99.0
   # ---------------------------------------------
   # API Token for access to github
   # ---------------------------------------------
   - secure: SNRF9Ys0OTI6zoFn88N8gxsadU7Ifu+G7B5kJfBmtRnVXoubUmpbve+sBgmk9OuHcpcmUnxvs2sOopjBOQBjmFMF7pZ699e4z6KLyhZTJG4wqiYkeTAt5uUixSaZ3BE0C07qC3rA/u4OD1GlBEEDGhUvDzddbgmUotvoUUi3+BCwyUBTAw64oR4z5wJADWX6eGqvLZ4oEnpz95A3OuNxepStIVDPZE7eACl8nwqztKBRkS3xmV6kKCB2Hzclq4Bk0DPyLDPvomnTaswhssT/NxuV8c6VUH72cjPJWLnMCupkV2Gye7v7XomdfDWTZJv+mZfoWY8eZMn/+zWwbwvKVi2DuTMbjWfwNPyFYI12ZfIRW613S2TITYoLOedo6V4Sh2B8pMJZeeSosAmje9pOdQYTysRz9imTraWd7zEYsQEcUCwCvJEtLHDFOJhXZT4OZ3hOyEv2FSI831/UJRlXRxwQJCOsPXO7sLNy3qY3vHE8P7IJjy8F3Mzx7IzX21B1exquE+PnI2FW3AEMUjnySCm28QOMXHrsb5Qi4CoNz3RaRevQsjo6wVNr/Idgh0CEMvDLzbtilFfcwnfl3Fa2phcN+TT3e+u6UNTuZNHhpXl/+gfnq61VhlZNEE6q2U6g6Bk+YLhjCFEfY4fIcEd/LIWSJcJ0i9SOJ0VJL5VKw+I=
 
 before_script:
-  # --------------------------------------------------
-  # Start the XVFB Service for ui testing as suggested
-  # by the travis documentation
-  # --------------------------------------------------
-  - sh -e /etc/init.d/xvfb start
   # -----------------------------------
   # Startup the metacity window manager
   # -----------------------------------
   - metacity --sm-disable --replace 2> metacity.err &
+  # --------------------------------------
+  # Start the ssh agent
+  # --------------------------------------
+  - eval "$(ssh-agent -s)"
+  # ----------------------------------------
+  # Decrypt the key for accessign the 
+  # deployment store and add it to ssh-agent
+  # ----------------------------------------
+  - mkdir -p -m 700 /tmp/.sourceforge_ssh
+  - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/.sourceforge_ssh/id_ed25519 -d
+  - chmod 600 /tmp/.sourceforge_ssh/id_ed25519
+  - bash/ssh-add-password -k /tmp/.sourceforge_ssh/id_ed25519 -p ${ssh_password} 2>/dev/null
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
 
 jobs:
   include:
@@ -97,14 +106,6 @@ jobs:
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
-        # ----------------------------------------
-        # Decrypt the key for accessign the 
-        # deployment store and add it to ssh-agent
-        # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
-        - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -141,8 +142,8 @@ jobs:
       # ---------------------------------------------    
       - provider: script
         skip_cleanup: true
-        script: # 
-        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
+        script: #
+        - rsync -e ssh -avP --delete $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/development/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/development/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: development
@@ -163,14 +164,6 @@ jobs:
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
       before_deploy:
-        # ----------------------------------------
-        # Decrypt the key for accessign the 
-        # deployment store and add it to ssh-agent
-        # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
-        - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
         # -----------------------------------------------------------
         # Update the development tag beforehand
         # And send it back to the origin, otherwise travis will 
@@ -208,7 +201,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/unsecured/p2/DLRMavenTychoDemo/integration/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/integration/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           branch: integration
@@ -228,15 +221,6 @@ jobs:
       - (grep -n "\[\(WARN\|WARNING\|ERROR\)\]" maven.log || exit 0  && exit 1;)
       - echo "Check for failed test cases:"
       - (grep -n "<<< FAILURE!" maven.log || exit 0 && exit 1;)
-      before_deploy:
-        # ----------------------------------------
-        # Decrypt the key for accessign the 
-        # deployment store and add it to ssh-agent
-        # ----------------------------------------
-        - openssl aes-256-cbc -K $encrypted_eeacdccef9d1_key -iv $encrypted_eeacdccef9d1_iv -in id_ed25519.enc -out /tmp/id_ed25519 -d
-        - eval "$(ssh-agent -s)"
-        - chmod 600 /tmp/id_ed25519
-        - ssh-add /tmp/id_ed25519
       deploy:
         # -----------------------------------------------------------
         # Now attach the release to the Release Tag.
@@ -261,7 +245,7 @@ jobs:
       - provider: script
         skip_cleanup: true
         script: # 
-        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  philmfischer@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
+        - rsync -e ssh -avP $TRAVIS_BUILD_DIR/deploy/secured/p2/DLRMavenTychoDemo/release/  dlrscmns@frs.sourceforge.net:/home/frs/project/maven-tycho-demo/release/
         on:
           repo: DLR-SC/Maven-Tycho-Demo
           tags: true

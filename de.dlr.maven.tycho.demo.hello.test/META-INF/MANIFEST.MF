@@ -2,10 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DLR Maven Tycho Demo - Hello World Test
 Bundle-SymbolicName: de.dlr.maven.tycho.demo.hello.test
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Fragment-Host: de.dlr.maven.tycho.demo.hello
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: DLR (German Aerospace Center)
-Export-Package: de.dlr.maven.tycho.demo.hello.say.test
+Export-Package: de.dlr.maven.tycho.demo.hello.say,
+ de.dlr.maven.tycho.demo.hello.say.test
 Automatic-Module-Name: de.dlr.maven.tycho.demo.hello.test
 Require-Bundle: org.junit

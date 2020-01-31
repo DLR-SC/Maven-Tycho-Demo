@@ -14,3 +14,6 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.ui.intro,
  org.eclipse.ui
 Automatic-Module-Name: de.dlr.maven.tycho.demo.branding.ui
+Export-Package: de.dlr.maven.tycho.demo.branding.ui,
+ de.dlr.maven.tycho.demo.branding.ui.intro,
+ de.dlr.maven.tycho.demo.branding.ui.perspective

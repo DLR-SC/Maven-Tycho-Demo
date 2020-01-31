@@ -14,3 +14,4 @@ Require-Bundle: de.dlr.maven.tycho.demo.branding.ui,
  org.eclipse.swtbot.go,
  org.eclipse.swtbot.junit4_x,
  org.eclipse.swtbot.swt.finder
+Export-Package: de.dlr.maven.tycho.demo.swtbot.test

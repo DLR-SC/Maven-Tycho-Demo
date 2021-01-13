@@ -78,16 +78,14 @@ jobs:
       # Development and Feature branches
       # --------------------------------------------
       - name: Build - Maven 
-        runs: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployUnsecured
-        uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
+        run: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployUnsecured
         if: ${{ steps.build_decision.outputs.build_type != 'release' }}
       
       # --------------------------------------------
       # Development and Feature branches
       # --------------------------------------------
       - name: Build - Maven Release
-        runs: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployBackuped
-        uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
+        run: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployBackuped
         if: ${{ steps.build_decision.outputs.build_type == 'release' }}
           
       # --------------------------------------------

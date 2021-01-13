@@ -126,7 +126,7 @@ jobs:
           build_profile: ${{ steps.build_decision.outputs.build_type }}
           openssl_pass: ${{ secrets.SF_SSH_KEY_OPENSSL_PASS }}
           ssh_key_pass: ${{ secrets.SF_SSH_KEY_PASS }}
-          local_dir: VirSat4_Core_Application
-          remote_dir: virtualsatellite/VirtualSatellite4-Core
+          local_dir: DLRMavenTychoDemo
+          remote_dir: maven-tycho-demo
         if: ${{ steps.build_decision.outputs.deploy_type == 'deploy' }}
       

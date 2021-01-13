@@ -78,14 +78,22 @@ jobs:
       # Development and Feature branches
       # --------------------------------------------
       - name: Build - Maven 
-        run: mvn clean install -P ${{ steps.build_decision.outputs.build_type }},deployUnsecured
+        run: |
+          - export DISPLAY=:99.0
+          - Xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
+          - metacity --sm-disable --replace 2> metacity.err &
+          - mvn clean install -P ${{ steps.build_decision.outputs.build_type }},deployUnsecured
         if: ${{ steps.build_decision.outputs.build_type != 'release' }}
       
       # --------------------------------------------
       # Development and Feature branches
       # --------------------------------------------
       - name: Build - Maven Release
-        run: mvn clean install -P ${{ steps.build_decision.outputs.build_type }},deployBackuped
+        run: |
+          - export DISPLAY=:99.0
+          - Xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
+          - metacity --sm-disable --replace 2> metacity.err &
+          - mvn clean install -P ${{ steps.build_decision.outputs.build_type }},deployBackuped
         if: ${{ steps.build_decision.outputs.build_type == 'release' }}
           
       # --------------------------------------------

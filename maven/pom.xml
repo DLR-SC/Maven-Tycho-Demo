@@ -72,7 +72,7 @@
 			<id>integration</id>
 			<properties>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>
-				<build.folder.type>integration/${build.version}/${env.github_sha}</build.folder.type>
+				<build.folder.type>integration/${build.version}/${env.GITHUB_SHA}</build.folder.type>
 				<build.qualifier>'i'yyyyMMddHHmm</build.qualifier>
 				<build.file>MavenTychoDemo_Integration_${build.version}_${env.GITHUB_SHA}</build.file>
 			</properties>

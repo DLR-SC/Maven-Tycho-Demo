@@ -66,7 +66,6 @@ jobs:
         uses: virtualsatellite/ci-actions/ci-setup-action@v2
         with:
           xvfb: -x
-          pkgs_file: apt_vtk_zmq_packages
      
       # --------------------------------------------
       # Development and Feature branches
@@ -78,11 +77,18 @@ jobs:
       # --------------------------------------------
       # Development and Feature branches
       # --------------------------------------------
-      - name: Build - Assemble
+      - name: Build - Maven 
+        runs: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployUnsecured
         uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
-        with:
-          build_job: assemble
-          build_profile: ${{ steps.build_decision.outputs.build_type }}
+        if: ${{ steps.build_decision.outputs.build_type != 'release' }}
+      
+      # --------------------------------------------
+      # Development and Feature branches
+      # --------------------------------------------
+      - name: Build - Maven Release
+        runs: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployBackuped
+        uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
+        if: ${{ steps.build_decision.outputs.build_type == 'release' }}
           
       # --------------------------------------------
       # Upload SWTBout screenshots to github artifacts

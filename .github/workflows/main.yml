@@ -78,14 +78,14 @@ jobs:
       # Development and Feature branches
       # --------------------------------------------
       - name: Build - Maven 
-        run: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployUnsecured
+        run: mvn clean install -P ${{ steps.build_decision.outputs.build_type }},deployUnsecured
         if: ${{ steps.build_decision.outputs.build_type != 'release' }}
       
       # --------------------------------------------
       # Development and Feature branches
       # --------------------------------------------
       - name: Build - Maven Release
-        run: mvn clean install -p ${{ steps.build_decision.outputs.build_type }},deployBackuped
+        run: mvn clean install -P ${{ steps.build_decision.outputs.build_type }},deployBackuped
         if: ${{ steps.build_decision.outputs.build_type == 'release' }}
           
       # --------------------------------------------

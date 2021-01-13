@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DLR Tycho Maven Demo - Test
 Bundle-SymbolicName: de.dlr.maven.tycho.demo.test
-Bundle-Version: 0.4.1.qualifier
+Bundle-Version: 0.5.0.qualifier
 Bundle-Activator: de.dlr.maven.tycho.demo.test.Activator
 Bundle-Vendor: DLR (German Aerospace Center)
 Require-Bundle: org.eclipse.core.runtime,

@@ -2,7 +2,7 @@
 <feature
       id="de.dlr.maven.tycho.demo.docs.feature"
       label="DLR Maven Tycho Demo - Documentation Feature"
-      version="0.4.1.qualifier"
+      version="0.5.0.qualifier"
       provider-name="DLR (German Aerospace Center)"
       plugin="de.dlr.maven.tycho.demo.branding.ui"
       license-feature="de.dlr.maven.tycho.demo.license.feature">

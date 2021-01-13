@@ -2,7 +2,7 @@
 <feature
       id="de.dlr.maven.tycho.demo.branding.feature"
       label="DLR Maven Tycho Demo - Branding Feature"
-      version="0.4.1.qualifier"
+      version="0.5.0.qualifier"
       provider-name="DLR (German Aerospace Center)"
       license-feature="de.dlr.maven.tycho.demo.license.feature">
 
@@ -30,7 +30,7 @@ http://www.eclipse.org/legal/epl-2.0
       <import plugin="org.eclipse.core.runtime" version="0.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.intro"/>
       <import plugin="org.eclipse.ui"/>
-      <import feature="de.dlr.maven.tycho.demo.license.feature" version="0.4.1.qualifier"/>
+      <import feature="de.dlr.maven.tycho.demo.license.feature" version="0.5.0.qualifier"/>
    </requires>
 
    <plugin

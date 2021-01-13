@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DLR Maven Tycho Demo - Branding UI
 Bundle-SymbolicName: de.dlr.maven.tycho.demo.branding.ui;singleton:=true
-Bundle-Version: 0.4.1.qualifier
+Bundle-Version: 0.5.0.qualifier
 Bundle-Activator: de.dlr.maven.tycho.demo.branding.ui.BrandingPlugin
 Bundle-Vendor: DLR (German Aerospace Center)
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

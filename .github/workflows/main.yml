@@ -97,17 +97,6 @@ jobs:
         if: ${{ steps.build_decision.outputs.build_type == 'release' }}
           
       # --------------------------------------------
-      # Upload SWTBout screenshots to github artifacts
-      # --------------------------------------------
-      - name: Build and Test - Upload SWTBot Screenshots on Failure
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: SWTBot Screenshots
-          path: 
-            swtbot/*
-      
-      # --------------------------------------------
       # Upload Surefire Reports to github artifacts
       # --------------------------------------------            
       - name: Upload Surefire Reports on Failure

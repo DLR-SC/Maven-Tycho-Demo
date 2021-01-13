@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="DLR Maven Tycho Demo Application" uid="de.dlr.maven.tycho.demo.product" id="de.dlr.maven.tycho.demo.branding.ui.dlrMavenTychoDemo" application="org.eclipse.ui.ide.workbench" version="0.4.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="DLR Maven Tycho Demo Application" uid="de.dlr.maven.tycho.demo.product" id="de.dlr.maven.tycho.demo.branding.ui.dlrMavenTychoDemo" application="org.eclipse.ui.ide.workbench" version="0.4.1.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/de.dlr.maven.tycho.demo.branding.ui/resources/Branding/MavenTychoDemoAbout.png"/>
       <text>
          DLR Maven Tycho Demo
 
-Version 0.4.0
+Version 0.4.1
 
 Copyright 2018 by German Aerospace Center (DLR) e.V.
 

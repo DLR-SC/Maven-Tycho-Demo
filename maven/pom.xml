@@ -24,8 +24,8 @@
 	</organization>
 
 	<properties>
-		<tycho-version>1.2.0</tycho-version>
-		<tycho-extras-version>1.2.0</tycho-extras-version>
+		<tycho-version>1.7.0</tycho-version>
+		<tycho-extras-version>1.7.0</tycho-extras-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<build.version>0.4.0</build.version>
 		<build.qualifier>'t'yyyyMMddHHmm</build.qualifier>

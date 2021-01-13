@@ -72,9 +72,9 @@
 			<id>integration</id>
 			<properties>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>
-				<build.folder.type>integration/${build.version}/${env.GITHUB_SHA}</build.folder.type>
+				<build.folder.type>integration/${build.version}</build.folder.type>
 				<build.qualifier>'i'yyyyMMddHHmm</build.qualifier>
-				<build.file>MavenTychoDemo_Integration_${build.version}_${env.GITHUB_SHA}</build.file>
+				<build.file>MavenTychoDemo_Integration_${build.version}</build.file>
 			</properties>
 		</profile>
 		<profile>
@@ -82,9 +82,9 @@
 			<properties>
 				<build.deploy.release>true</build.deploy.release>
 				<target.platform.name>${target.platform.name.default}</target.platform.name>
-				<build.folder.type>release/${build.version}/${env.github_sha}</build.folder.type>
+				<build.folder.type>release/${build.version}/${env.GITHUB_SHA}</build.folder.type>
 				<build.qualifier>'r'yyyyMMddHHmm</build.qualifier>
-				<build.file>MavenTychoDemo_Release_${build.version}_${env.github_sha}</build.file>
+				<build.file>MavenTychoDemo_Release_${build.version}_${env.GITHUB_SHA}</build.file>
 			</properties>
 		</profile>
 	</profiles>

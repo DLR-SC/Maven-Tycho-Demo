@@ -32,184 +32,13 @@ env:
 # Defines the list of jobs
 # --------------------------------------------
 jobs:
- 
-  # -----------------------------------------------------
-  # Build and Test - SpotBugs Job
-  # -----------------------------------------------------
-  spotbugs:
-    name: Build and Test - Spotbugs
-    runs-on: ubuntu-18.04
-   
-    steps:
-      # --------------------------------------------
-      # Checks out a copy of the repository
-      # --------------------------------------------
-      - name: Setup - Checkout code
-        uses: actions/checkout@v2
-      
-      # --------------------------------------------
-      # Setup caching for m2 repository
-      # --------------------------------------------
-      - name: Setup - Cache local Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository/
-          key: ${{ runner.os }}-local-maven-spotbugs-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-local-maven-spotbugs-
-            ${{ runner.os }}-local-maven-
-     
-      # --------------------------------------------
-      # Perform various setup operations
-      # --------------------------------------------      
-      - name: Setup - Prepare OS
-        uses: virtualsatellite/ci-actions/ci-setup-action@v2
-
-      # --------------------------------------------
-      # Development and Feature branches
-      # --------------------------------------------
-      - name: Build - Build and Deploy Decision
-        id: build_decision
-        uses: virtualsatellite/ci-actions/ci-build-decision-action@v2
-
-      # --------------------------------------------
-      # Development and Feature branches
-      # --------------------------------------------
-      - name: Build and Test - Spotbugs
-        uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
-        with:
-          build_job: spotbugs
-          build_profile: ${{ steps.build_decision.outputs.build_type }}
-
-  # -----------------------------------------------------
-  # Build and Test - Surefire Job
-  # -----------------------------------------------------
-  surefire:
-    name: Build and Test - Surefire
-    runs-on: ubuntu-18.04
-
-    steps:
-      # --------------------------------------------
-      # Checks out a copy of your repository
-      # --------------------------------------------
-      - name: Setup - Checkout code
-        uses: actions/checkout@v2
-
-      # --------------------------------------------
-      # Setup caching for m2 repository
-      # --------------------------------------------
-      - name: Setup - Cache local Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository/
-          key: ${{ runner.os }}-local-maven-surefire-{{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-local-maven-surefire-
-            ${{ runner.os }}-local-maven-
-
-      # --------------------------------------------
-      # Perform various setup operations
-      # --------------------------------------------      
-      - name: Setup - Prepare OS
-        uses: virtualsatellite/ci-actions/ci-setup-action@v2
-        with:
-           xvfb: -x
-           pkgs_file: apt_vtk_zmq_packages
-
-      # --------------------------------------------
-      # Development and Feature branches
-      # --------------------------------------------
-      - name: Build - Build and Deploy Decision
-        id: build_decision
-        uses: virtualsatellite/ci-actions/ci-build-decision-action@v2
-
-      # --------------------------------------------
-      # Development and Feature branches
-      # --------------------------------------------
-      - name: Build and Test - Surefire
-        uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
-        with:
-          build_job: surefire
-          build_profile: ${{ steps.build_decision.outputs.build_type }}
-
-      # --------------------------------------------
-      # Upload SWTBout screenshots to github artifacts
-      # --------------------------------------------
-      - name: Build and Test - Upload SWTBot Screenshots on Failure
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: SWTBot Screenshots
-          path: 
-            swtbot/*
-
-      # --------------------------------------------
-      # Upload Surefire Reports to github artifacts
-      # --------------------------------------------            
-      - name: Upload Surefire Reports on Failure
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: Surefire Reports
-          path: 
-            ./**/target/surefire-reports/*
-
-  # -----------------------------------------------------
-  # Build and Test - Checkstyle Job
-  # -----------------------------------------------------
-  checkstyle:
-    name: Build and Test - Checkstyle
-    runs-on: ubuntu-18.04
-
-    steps:
-      # --------------------------------------------
-      # Checks out a copy of your repository
-      # --------------------------------------------
-      - name: Setup - Checkout code
-        uses: actions/checkout@v2
-      
-      # --------------------------------------------
-      # Setup caching for m2 repository
-      # --------------------------------------------      
-      - name: Setup - Cache local Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository/
-          key: ${{ runner.os }}-local-maven-checkstyle-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-local-maven-checkstyle-
-            ${{ runner.os }}-local-maven-
-            
-    
-      # --------------------------------------------
-      # Perform various setup operations
-      # --------------------------------------------      
-      - name: Setup - Prepare OS
-        uses: virtualsatellite/ci-actions/ci-setup-action@v2
-
-      # --------------------------------------------
-      # Development and Feature branches
-      # --------------------------------------------
-      - name: Build - Build and Deploy Decision
-        id: build_decision
-        uses: virtualsatellite/ci-actions/ci-build-decision-action@v2
-
-      # --------------------------------------------
-      # Development and Feature branches
-      # --------------------------------------------
-      - name: Build and Test - Checkstyle
-        uses: virtualsatellite/ci-actions/ci-maven-build-action@v2
-        with:
-          build_job: checkstyle
-          build_profile: ${{ steps.build_decision.outputs.build_type }}
 
   # -----------------------------------------------------
   # Build, Assemble and Deploy Job
   # -----------------------------------------------------
-  deploy:
+  build:
     name: Build, Assemble and Deploy
     runs-on: ubuntu-18.04
-    needs: [spotbugs, surefire, checkstyle]
     
     steps:
       # --------------------------------------------
@@ -235,7 +64,10 @@ jobs:
       # --------------------------------------------
       - name: Setup - Prepare OS
         uses: virtualsatellite/ci-actions/ci-setup-action@v2
-
+        with:
+          xvfb: -x
+          pkgs_file: apt_vtk_zmq_packages
+     
       # --------------------------------------------
       # Development and Feature branches
       # --------------------------------------------
@@ -251,6 +83,28 @@ jobs:
         with:
           build_job: assemble
           build_profile: ${{ steps.build_decision.outputs.build_type }}
+          
+      # --------------------------------------------
+      # Upload SWTBout screenshots to github artifacts
+      # --------------------------------------------
+      - name: Build and Test - Upload SWTBot Screenshots on Failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: SWTBot Screenshots
+          path: 
+            swtbot/*
+      
+      # --------------------------------------------
+      # Upload Surefire Reports to github artifacts
+      # --------------------------------------------            
+      - name: Upload Surefire Reports on Failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Surefire Reports
+          path: 
+            ./**/target/surefire-reports/*
      
       # ---------------------------------------------
       # Deploying to github releases
@@ -265,7 +119,7 @@ jobs:
       # ----------------------------------------------
       # SF Deploy still to be done
       # ----------------------------------------------
-      - name: Build - Deploy SF (Core)
+      - name: Build - Deploy SF
         uses: virtualsatellite/ci-actions/ci-deploy-sf-product-action@v2
         with:
           build_profile: ${{ steps.build_decision.outputs.build_type }}
@@ -275,12 +129,3 @@ jobs:
           remote_dir: virtualsatellite/VirtualSatellite4-Core
         if: ${{ steps.build_decision.outputs.deploy_type == 'deploy' }}
       
-      - name: Build - Deploy SF (IDE Tools)
-        uses: virtualsatellite/ci-actions/ci-deploy-sf-product-action@v2
-        with:
-          build_profile: ${{ steps.build_decision.outputs.build_type }}
-          openssl_pass: ${{ secrets.SF_SSH_KEY_OPENSSL_PASS }}
-          ssh_key_pass: ${{ secrets.SF_SSH_KEY_PASS }}
-          local_dir: VirSat4_Dvlm_ConceptIDE
-          remote_dir: virtualsatellite/VirtualSatellite4-DVLM
-        if: ${{ steps.build_decision.outputs.deploy_type == 'deploy' }}

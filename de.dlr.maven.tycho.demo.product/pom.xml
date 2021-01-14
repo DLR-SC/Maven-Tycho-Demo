@@ -24,7 +24,7 @@
 	<packaging>eclipse-repository</packaging>
 
 	<properties>
-		<build.folder.application>DLRMavenTychoDemoBinary</build.folder.application>
+		<build.folder.application>DLRMavenTychoDemo</build.folder.application>
 		<build.folder.fullpath>${build.folder.target.bin}/${build.folder.application}/${build.folder.type}</build.folder.fullpath>
 		<build.file.win32.fullpath>${build.folder.target.bin}/${build.folder.application}/${build.folder.type}/${build.file}.zip</build.file.win32.fullpath>
 		<build.file.linux.fullpath>${build.folder.target.bin}/${build.folder.application}/${build.folder.type}/${build.file}.tar.gz</build.file.linux.fullpath>

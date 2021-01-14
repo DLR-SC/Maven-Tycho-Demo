@@ -5,6 +5,18 @@ Maven Tycho Demo Release Notes
 Release 0.4.0 (31 January 2020)
 
 New Features:
+	Migrated build process from Travis-CI to GitHub Actions
+	
+Usability Updates:
+	...
+
+Fixed Bugs:
+	...
+
+--------------------------------
+Release 0.4.0 (31 January 2020)
+
+New Features:
 	Updated to Eclipse Public License (EPL) v2 also in POM files
 	Changed deployment accounts to increase security
 	Implemented ssh-key with password protection for deployment

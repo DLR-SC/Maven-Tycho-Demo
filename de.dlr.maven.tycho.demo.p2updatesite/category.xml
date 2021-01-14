@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.dlr.maven.tycho.demo.branding.feature_0.4.0.qualifier.jar" id="de.dlr.maven.tycho.demo.branding.feature" version="0.4.0.qualifier">
+   <feature url="features/de.dlr.maven.tycho.demo.branding.feature_0.5.0.qualifier.jar" id="de.dlr.maven.tycho.demo.branding.feature" version="0.5.0.qualifier">
       <category name="MavenTychoDemo"/>
    </feature>
-   <feature url="features/de.dlr.maven.tycho.demo.hello.feature_0.4.0.qualifier.jar" id="de.dlr.maven.tycho.demo.hello.feature" version="0.4.0.qualifier">
+   <feature url="features/de.dlr.maven.tycho.demo.hello.feature_0.5.0.qualifier.jar" id="de.dlr.maven.tycho.demo.hello.feature" version="0.5.0.qualifier">
       <category name="MavenTychoDemo"/>
    </feature>
-   <feature url="features/de.dlr.maven.tycho.demo.license.feature_0.4.0.qualifier.jar" id="de.dlr.maven.tycho.demo.license.feature" version="0.4.0.qualifier">
+   <feature url="features/de.dlr.maven.tycho.demo.license.feature_0.5.0.qualifier.jar" id="de.dlr.maven.tycho.demo.license.feature" version="0.5.0.qualifier">
       <category name="MavenTychoDemo"/>
    </feature>
-   <feature url="features/de.dlr.maven.tycho.demo.test.feature_0.4.0.qualifier.jar" id="de.dlr.maven.tycho.demo.test.feature" version="0.4.0.qualifier">
+   <feature url="features/de.dlr.maven.tycho.demo.test.feature_0.5.0.qualifier.jar" id="de.dlr.maven.tycho.demo.test.feature" version="0.5.0.qualifier">
       <category name="MavenTychoDemo"/>
    </feature>
-   <feature url="features/de.dlr.maven.tycho.demo.docs.feature_0.4.0.qualifier.jar" id="de.dlr.maven.tycho.demo.docs.feature" version="0.4.0.qualifier">
+   <feature url="features/de.dlr.maven.tycho.demo.docs.feature_0.5.0.qualifier.jar" id="de.dlr.maven.tycho.demo.docs.feature" version="0.5.0.qualifier">
       <category name="MavenTychoDemo"/>
    </feature>
    <category-def name="MavenTychoDemo" label="DLR Maven Tycho Demo">
